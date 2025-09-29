@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Market</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    .menu-parent:hover .menu-child {
+      display: block;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Overlay nền mờ -->
+  <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40"></div>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full bg-red-600 text-white shadow-md z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-2">
+      <!-- Danh mục -->
+      <div class="relative">
+        <div class="flex items-center space-x-4">
+          <button id="menuBtn"
+            class="w-8 h-8 flex items-center justify-center bg-white text-red-600 rounded-md shadow hover:bg-gray-200">
+            <img src="image/header/menu.png" alt="Menu" class="w-5 h-5" />
+          </button>
+          <a href="trangchu.html" class="text-xl font-extrabold transition">STUDENT MARKET</a>
+        </div>
+
+        <div id="menuDropdown"
+          class="hidden absolute left-0 mt-4 w-72 bg-white text-gray-700 rounded-md shadow-lg z-50">
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/document.png" alt="icon" class="w-5 h-5" />
+                <span>Sách & Tài liệu học tập</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <!-- Danh mục con -->
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 180px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Giáo trình</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Sách tham khảo</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Sách ngoại ngữ</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Truyện, tiểu thuyết</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/responsive.png" alt="icon" class="w-5 h-5" />
+                <span>Đồ điện tử & Công nghệ</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <!-- Danh mục con -->
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 190px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Điện thoại & Tablet</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Laptop & PC</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Phụ kiện & Linh kiện</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Thiết bị khác</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/stationery.png" alt="icon" class="w-5 h-5" />
+                <span>Đồ dùng học tập</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 160px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Vở & Sổ tay</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Bút & Thước</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Máy tính cầm tay</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Dụng cụ vẽ</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/sofa.png" alt="icon" class="w-5 h-5" />
+                <span>Đồ gia dụng</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 300px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Đồ bếp (nồi, chảo , bếp điện)</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Điện gia dụng (nồi cơm, ấm siêu tốc)</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Nội thất (bàn, ghế, kệ)</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Đèn học & Đèn ngủ</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Chén, ly, muỗng, đũa</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/laundry.png" alt="icon" class="w-5 h-5" />
+                <span>Thời trang & Phụ kiện</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 190px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Quần áo</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Giày dép</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Balo & Túi Xách</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Đồng hồ & Trang sức</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/sports.png" alt="icon" class="w-5 h-5" />
+                <span>Đồ thể thao & Giải trí</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 200px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Xe đạp & Ván trượt</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Gym & Yoga</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Bóng & Vợt</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Nhạc cụ</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Boardgame & Đồ chơi</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/other.png" alt="icon" class="w-5 h-5" />
+                <span>Khác</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 190px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Đồ decor & Trang trí</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Thú cưng</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Vé sự kiện & Vé xe</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Sưu tầm</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="flex-1 px-4 flex justify-center">
+        <div class="relative w-full max-w-md">
+          <input type="text" placeholder="Tìm đồ dùng cũ..."
+            class="w-full px-4 py-2 pl-10 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-400" />
+          <button id="searchBtn" class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-red-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Icons + buttons -->
+      <div class="flex items-center space-x-3">
+        <!-- Yêu thích -->
+        <div class="relative">
+          <button id="favBtn" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-500">
+            <img src="image/header/like.png" alt="Yêu Thích" class="w-6 h-6" />
+          </button>
+
+          <div id="favDropdown"
+            class="hidden absolute right-0 mt-4 w-56 bg-white text-gray-700 rounded-md shadow-lg z-50">
+            <p class="px-4 py-2 font-semibold border-b">Yêu thích</p>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Laptop cũ giá rẻ</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Xe đạp thể thao</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Giáo trình đại học</a>
+          </div>
+        </div>
+
+        <!-- Thông báo -->
+        <div class="relative">
+          <button id="notiBtn" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-500">
+            <img src="image/header/notification.png" alt="Thông báo" class="w-6 h-6" />
+          </button>
+
+          <div id="notiDropdown"
+            class="hidden absolute right-0 mt-4 w-64 bg-white text-gray-700 rounded-md shadow-lg z-50">
+            <p class="px-4 py-2 font-semibold border-b">Thông báo</p>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Nguyễn An đã nhắn bạn về "Laptop
+              cũ"</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Sản phẩm "Xe đạp thể thao" đã có
+              người quan tâm</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Bạn có 1 đánh giá mới</a>
+          </div>
+        </div>
+
+        <!-- Đăng bài -->
+        <button class="bg-white text-red-600 px-3 py-1 rounded-md hover:bg-gray-200">
+          Đăng bài
+        </button>
+
+        <!-- Avatar + dropdown -->
+        <div class="relative">
+          <button id="avatarBtn"
+            class="bg-red-500 p-2 rounded-full flex items-center space-x-1 hover:bg-red-400 relative overflow-visible">
+            <img src="image/header_user/avartar.jpg" alt="Avatar" class="w-7 h-7 rounded-full object-cover -m-1" />
+            <!-- Mũi tên dropdown avatar -->
+            <svg class="w-7 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 10 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Dropdown menu -->
+          <div id="dropdownMenu"
+            class="hidden absolute right-0 mt-3.5 w-72 bg-white rounded-xl shadow-lg z-50 overflow-hidden">
+
+            <!-- Header -->
+            <div class="p-4 border-b flex justify-center bg-gray-100">
+              <p class="text-sm text-black leading-snug text-center">
+                Xin chào, <span class="font-bold">Hoàng Thanh An</span>
+              </p>
+            </div>
+
+            <!-- Menu items -->
+            <div class="flex flex-col">
+              <a href="thongtintaikhoan.html" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/setting.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Thông tin tài khoản</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="quanlybaidang.html" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/edit.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Quản lý bài đăng</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="lichsugiaodich.html" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/file.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Lịch sử giao dịch</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="gopy.html" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/gopy.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Góp ý & hỗ trợ</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="dieukhoansudung.html" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/information.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Điều khoản sử dụng</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="#" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/logout.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-red-600">Đăng xuất</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+            </div>
+
+            <!-- Footer: ngôn ngữ -->
+            <div class="border-t px-4 py-2 flex justify-center items-center text-xs font-medium bg-gray-200">
+              <a href="#" class="text-red-600">Tiếng Việt</a>
+              <span class="mx-1 text-gray-500">/</span>
+              <a href="#" class="text-gray-800 hover:text-black">English</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-4 pt-8">
+
+      <!-- Phần trên: Hồ sơ (PROFILE) -->
+      <section class="bg-white rounded-2xl shadow p-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3">
+          <!-- Cột 1: Avatar + tên + theo dõi -->
+          <div class="flex items-center gap-4 px-2 py-4 md:py-0 md:pr-6 md:border-r">
+            <!-- Avatar + nút đổi ảnh -->
+            <div class="relative shrink-0 w-20 h-20">
+              <img src="image/header_user/avartar.jpg" alt="Avatar"
+                class="w-20 h-20 rounded-full object-cover border" />
+
+              <!-- Nút camera -->
+              <button type="button"
+                class="absolute bottom-0 right-0 bg-gray-200 rounded-full p-1 shadow hover:bg-gray-300">
+                <img src="image/thongtintaikhoan/photo-camera.png" alt="Đổi ảnh đại diện" class="w-4 h-4" />
+              </button>
+            </div>
+
+            <!-- Tên + số theo dõi -->
+            <div class="flex flex-col justify-center">
+              <h2 class="text-base font-semibold text-gray-900 truncate">Hoàng Thanh An</h2>
+              <div class="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
+                <span>Người theo dõi: <b class="font-semibold text-gray-900">18</b></span>
+                <span class="hidden md:inline text-gray-300">|</span>
+                <span>Đang theo dõi: <b class="font-semibold text-gray-900">3</b></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cột 2: Đánh giá -->
+          <div class="px-2 py-4 md:py-0 md:px-6 md:border-r flex items-center justify-center text-center">
+            <div>
+              <p class="text-base font-semibold text-gray-900">Đánh giá</p>
+              <div class="mt-1 flex items-center justify-center gap-1" aria-label="4.7 trên 5">
+                <!-- 4 sao đầy -->
+                <svg class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.968 0 1.371 1.24.588 1.81l-2.802 2.035a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.035a1 1 0 00-1.175 0l-2.802 2.035c-.784.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.879 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                </svg> <svg class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.968 0 1.371 1.24.588 1.81l-2.802 2.035a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.035a1 1 0 00-1.175 0l-2.802 2.035c-.784.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.879 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                </svg> <svg class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.968 0 1.371 1.24.588 1.81l-2.802 2.035a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.035a1 1 0 00-1.175 0l-2.802 2.035c-.784.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.879 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                </svg> <svg class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.968 0 1.371 1.24.588 1.81l-2.802 2.035a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.035a1 1 0 00-1.175 0l-2.802 2.035c-.784.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.879 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                </svg>
+                <!-- sao thứ 5 rỗng -->
+                <svg class="w-5 h-5 text-gray-300" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.968 0 1.371 1.24.588 1.81l-2.802 2.035a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.035a1 1 0 00-1.175 0l-2.802 2.035c-.784.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.879 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                </svg>
+              </div>
+              <p class="mt-1 text-sm text-gray-900">
+                <span class="font-semibold">4.7</span>
+                <span class="text-gray-400">(14 đánh giá)</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Cột 3: Điểm tích lũy -->
+          <div class="px-2 py-4 md:py-0 md:pl-6 flex items-center justify-center">
+            <div class="flex items-center gap-3">
+              <!-- Icon ngôi sao trong hình tròn -->
+              <div class="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center">
+                <img src="image/thongtintaikhoan/star.png" alt="Star" class="w-10 h-10" />
+              </div>
+              <!-- Thông tin điểm -->
+              <div class="flex flex-col justify-center">
+                <p class="text-base font-semibold text-gray-900">Điểm tích luỹ</p>
+                <p class="mt-0.5 text-sm text-gray-600">Khả dụng: <b class="font-semibold text-gray-900">200 điểm</b>
+                </p>
+                <p class="text-sm text-gray-600">Tổng tích luỹ: <b class="font-semibold text-gray-900">510 điểm</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Layout 2 cột -->
+      <div class="flex flex-col md:flex-row gap-6">
+
+        <!-- Main Container -->
+        <div class="flex flex-col md:flex-row gap-6">
+
+          <!-- Sidebar -->
+          <aside class="md:col-span-3">
+            <nav class="bg-white rounded-2xl shadow divide-y top-24 w-[245px]">
+
+              <a class="flex items-center gap-3 px-6 py-3 bg-red-50 rounded-tl-2xl rounded-tr-2xl" href="tongquan.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/home-red.png" alt="Tổng Quan" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-red-600 font-semibold">Tổng Quan</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="thongtintaikhoan.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/setting.png" alt="Thông tin tài khoản" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Thông tin tài khoản</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="quanlybaidang.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/edit.png" alt="Quản lí bài đăng" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Quản lý bài đăng</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="lichsugiaodich.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/file.png" alt="Lịch sử giao dịch" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Lịch sử giao dịch</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="tichluydiem.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/tichluy.png" alt="Tích lũy điểm" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Tích lũy điểm</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="danhgia.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/danhgia.png" alt="Đánh giá" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Đánh giá</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="gopy.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/gopy.png" alt="Góp ý & hỗ trợ" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Góp ý & hỗ trợ</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="dieukhoansudung.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/dieukhoan.png" alt="Điều khoản sử dụng" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Điều khoản sử dụng</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50 rounded-bl-2xl rounded-br-2xl"
+                href="header.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/dangxuat.png" alt="Đăng xuất" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Đăng xuất</span>
+              </a>
+            </nav>
+          </aside>
+
+          <!-- ================== SẢN PHẨM YÊU THÍCH ================== -->
+          <section class="flex-1 bg-white rounded-2xl shadow p-6">
+            <!-- Tiêu đề -->
+            <div class="flex justify-center mb-6">
+              <div class="text-center">
+                <h3 class="text-red-600 font-bold">Sản phẩm yêu thích</h3>
+                <div class="h-0.5 w-64 bg-red-500 mx-auto rounded-full mt-2"></div>
+              </div>
+            </div>
+
+            <!-- Grid sản phẩm -->
+            <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6" style="width: 931px;">
+              <!-- Item 1 -->
+              <div
+                class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+                data-hot="true" data-date="2025-09-18" data-price="10000">
+                <div class="relative h-40 w-full">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                    class="rounded-md w-full h-full object-cover" />
+
+                  <!-- Nút HOT -->
+                  <span
+                    class="absolute top-3 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">Hot</span>
+
+                  <!-- Trái tim -->
+                  <button onclick="toggleFavorite(this)"
+                    class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                    <i class="fa-regular fa-heart text-red-600"></i>
+                  </button>
+                  <!-- Overlay ngày đăng + số ảnh -->
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+                    <span>1 ngày trước</span>
+                    <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+                  </div>
+                </div>
+
+                <!-- Nội dung -->
+                <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+                  <div>
+                    <p class="font-semibold text-base">Nồi cơm Delites</p>
+                    <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+                    <p class="text-gray-500">Quận Thanh Khê, Đà Nẵng</p>
+                  </div>
+                  <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+                </div>
+              </div>
+
+              <!-- Item 1 -->
+              <div
+                class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+                data-hot="true" data-date="2025-09-18" data-price="10000">
+                <div class="relative h-40 w-full">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                    class="rounded-md w-full h-full object-cover" />
+
+                  <!-- Nút HOT -->
+                  <span
+                    class="absolute top-3 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">Hot</span>
+
+                  <!-- Trái tim -->
+                  <button onclick="toggleFavorite(this)"
+                    class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                    <i class="fa-regular fa-heart text-red-600"></i>
+                  </button>
+                  <!-- Overlay ngày đăng + số ảnh -->
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+                    <span>1 ngày trước</span>
+                    <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+                  </div>
+                </div>
+
+                <!-- Nội dung -->
+                <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+                  <div>
+                    <p class="font-semibold text-base">Nồi cơm Delites</p>
+                    <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+                    <p class="text-gray-500">Quận Thanh Khê, Đà Nẵng</p>
+                  </div>
+                  <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+                </div>
+              </div>
+
+              <!-- Item 1 -->
+              <div
+                class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+                data-hot="true" data-date="2025-09-18" data-price="10000">
+                <div class="relative h-40 w-full">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                    class="rounded-md w-full h-full object-cover" />
+
+                  <!-- Nút HOT -->
+                  <span
+                    class="absolute top-3 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">Hot</span>
+
+                  <!-- Trái tim -->
+                  <button onclick="toggleFavorite(this)"
+                    class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                    <i class="fa-regular fa-heart text-red-600"></i>
+                  </button>
+                  <!-- Overlay ngày đăng + số ảnh -->
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+                    <span>1 ngày trước</span>
+                    <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+                  </div>
+                </div>
+
+                <!-- Nội dung -->
+                <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+                  <div>
+                    <p class="font-semibold text-base">Nồi cơm Delites</p>
+                    <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+                    <p class="text-gray-500">Quận Thanh Khê, Đà Nẵng</p>
+                  </div>
+                  <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+                </div>
+              </div>
+              <!-- Item 1 -->
+              <div
+                class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+                data-hot="true" data-date="2025-09-18" data-price="10000">
+                <div class="relative h-40 w-full">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                    class="rounded-md w-full h-full object-cover" />
+
+                  <!-- Nút HOT -->
+                  <span
+                    class="absolute top-3 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">Hot</span>
+
+                  <!-- Trái tim -->
+                  <button onclick="toggleFavorite(this)"
+                    class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                    <i class="fa-regular fa-heart text-red-600"></i>
+                  </button>
+                  <!-- Overlay ngày đăng + số ảnh -->
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+                    <span>1 ngày trước</span>
+                    <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+                  </div>
+                </div>
+
+                <!-- Nội dung -->
+                <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+                  <div>
+                    <p class="font-semibold text-base">Nồi cơm Delites</p>
+                    <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+                    <p class="text-gray-500">Quận Thanh Khê, Đà Nẵng</p>
+                  </div>
+                  <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+                </div>
+              </div>
+
+              <!-- Item 1 -->
+              <div
+                class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+                data-hot="true" data-date="2025-09-18" data-price="10000">
+                <div class="relative h-40 w-full">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                    class="rounded-md w-full h-full object-cover" />
+
+                  <!-- Nút HOT -->
+                  <span
+                    class="absolute top-3 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">Hot</span>
+
+                  <!-- Trái tim -->
+                  <button onclick="toggleFavorite(this)"
+                    class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                    <i class="fa-regular fa-heart text-red-600"></i>
+                  </button>
+                  <!-- Overlay ngày đăng + số ảnh -->
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+                    <span>1 ngày trước</span>
+                    <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+                  </div>
+                </div>
+
+                <!-- Nội dung -->
+                <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+                  <div>
+                    <p class="font-semibold text-base">Nồi cơm Delites</p>
+                    <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+                    <p class="text-gray-500">Quận Thanh Khê, Đà Nẵng</p>
+                  </div>
+                  <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+                </div>
+              </div>
+
+              <!-- Item 1 -->
+              <div
+                class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+                data-hot="true" data-date="2025-09-18" data-price="10000">
+                <div class="relative h-40 w-full">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                    class="rounded-md w-full h-full object-cover" />
+
+                  <!-- Nút HOT -->
+                  <span
+                    class="absolute top-3 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">Hot</span>
+
+                  <!-- Trái tim -->
+                  <button onclick="toggleFavorite(this)"
+                    class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                    <i class="fa-regular fa-heart text-red-600"></i>
+                  </button>
+                  <!-- Overlay ngày đăng + số ảnh -->
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+                    <span>1 ngày trước</span>
+                    <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+                  </div>
+                </div>
+
+                <!-- Nội dung -->
+                <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+                  <div>
+                    <p class="font-semibold text-base">Nồi cơm Delites</p>
+                    <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+                    <p class="text-gray-500">Quận Thanh Khê, Đà Nẵng</p>
+                  </div>
+                  <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+                </div>
+              </div>
+
+              <!-- Item 1 -->
+              <div
+                class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+                data-hot="true" data-date="2025-09-18" data-price="10000">
+                <div class="relative h-40 w-full">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                    class="rounded-md w-full h-full object-cover" />
+
+                  <!-- Nút HOT -->
+                  <span
+                    class="absolute top-3 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">Hot</span>
+
+                  <!-- Trái tim -->
+                  <button onclick="toggleFavorite(this)"
+                    class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                    <i class="fa-regular fa-heart text-red-600"></i>
+                  </button>
+                  <!-- Overlay ngày đăng + số ảnh -->
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+                    <span>1 ngày trước</span>
+                    <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+                  </div>
+                </div>
+
+                <!-- Nội dung -->
+                <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+                  <div>
+                    <p class="font-semibold text-base">Nồi cơm Delites</p>
+                    <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+                    <p class="text-gray-500">Quận Thanh Khê, Đà Nẵng</p>
+                  </div>
+                  <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+                </div>
+              </div>
+
+              <!-- Item 1 -->
+              <div
+                class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+                data-hot="true" data-date="2025-09-18" data-price="10000">
+                <div class="relative h-40 w-full">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                    class="rounded-md w-full h-full object-cover" />
+
+                  <!-- Nút HOT -->
+                  <span
+                    class="absolute top-3 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">Hot</span>
+
+                  <!-- Trái tim -->
+                  <button onclick="toggleFavorite(this)"
+                    class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                    <i class="fa-regular fa-heart text-red-600"></i>
+                  </button>
+                  <!-- Overlay ngày đăng + số ảnh -->
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+                    <span>1 ngày trước</span>
+                    <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+                  </div>
+                </div>
+
+                <!-- Nội dung -->
+                <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+                  <div>
+                    <p class="font-semibold text-base">Nồi cơm Delites</p>
+                    <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+                    <p class="text-gray-500">Quận Thanh Khê, Đà Nẵng</p>
+                  </div>
+                  <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+                </div>
+              </div>
+
+              <!-- Item 1 -->
+              <div
+                class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+                data-hot="true" data-date="2025-09-18" data-price="10000">
+                <div class="relative h-40 w-full">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                    class="rounded-md w-full h-full object-cover" />
+
+                  <!-- Nút HOT -->
+                  <span
+                    class="absolute top-3 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">Hot</span>
+
+                  <!-- Trái tim -->
+                  <button onclick="toggleFavorite(this)"
+                    class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                    <i class="fa-regular fa-heart text-red-600"></i>
+                  </button>
+                  <!-- Overlay ngày đăng + số ảnh -->
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+                    <span>1 ngày trước</span>
+                    <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+                  </div>
+                </div>
+
+                <!-- Nội dung -->
+                <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+                  <div>
+                    <p class="font-semibold text-base">Nồi cơm Delites</p>
+                    <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+                    <p class="text-gray-500">Quận Thanh Khê, Đà Nẵng</p>
+                  </div>
+                  <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+                </div>
+              </div>
+
+              <!-- Item 1 -->
+              <div
+                class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+                data-hot="true" data-date="2025-09-18" data-price="10000">
+                <div class="relative h-40 w-full">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                    class="rounded-md w-full h-full object-cover" />
+
+                  <!-- Nút HOT -->
+                  <span
+                    class="absolute top-3 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">Hot</span>
+
+                  <!-- Trái tim -->
+                  <button onclick="toggleFavorite(this)"
+                    class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                    <i class="fa-regular fa-heart text-red-600"></i>
+                  </button>
+                  <!-- Overlay ngày đăng + số ảnh -->
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+                    <span>1 ngày trước</span>
+                    <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+                  </div>
+                </div>
+
+                <!-- Nội dung -->
+                <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+                  <div>
+                    <p class="font-semibold text-base">Nồi cơm Delites</p>
+                    <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+                    <p class="text-gray-500">Quận Thanh Khê, Đà Nẵng</p>
+                  </div>
+                  <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+                </div>
+              </div>
+
+              <!-- Item 1 -->
+              <div
+                class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+                data-hot="true" data-date="2025-09-18" data-price="10000">
+                <div class="relative h-40 w-full">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                    class="rounded-md w-full h-full object-cover" />
+
+                  <!-- Nút HOT -->
+                  <span
+                    class="absolute top-3 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">Hot</span>
+
+                  <!-- Trái tim -->
+                  <button onclick="toggleFavorite(this)"
+                    class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                    <i class="fa-regular fa-heart text-red-600"></i>
+                  </button>
+                  <!-- Overlay ngày đăng + số ảnh -->
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+                    <span>1 ngày trước</span>
+                    <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+                  </div>
+                </div>
+
+                <!-- Nội dung -->
+                <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+                  <div>
+                    <p class="font-semibold text-base">Nồi cơm Delites</p>
+                    <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+                    <p class="text-gray-500">Quận Thanh Khê, Đà Nẵng</p>
+                  </div>
+                  <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+                </div>
+              </div>
+
+              <!-- Bạn thêm các card khác ở đây (iPhone 14, Quạt đứng, Nệm...) -->
+
+            </div>
+
+            <!-- Nút xem thêm -->
+            <!-- Nút xem thêm -->
+            <div class="mt-4 text-center">
+              <button id="loadMoreBtn" class="px-4 py-2 bg-red-600 text-white font-medium rounded-md hover:bg-red-500">
+                Xem thêm
+              </button>
+            </div>
+          </section>
+          <!-- ================== /SẢN PHẨM YÊU THÍCH ================== -->
+
+          <script>
+            // JS của trái tim
+            function toggleFavorite(btn) {
+              const icon = btn.querySelector("i");
+              if (icon.classList.contains("fa-regular")) {
+                icon.classList.remove("fa-regular");
+                icon.classList.add("fa-solid");
+              } else {
+                icon.classList.remove("fa-solid");
+                icon.classList.add("fa-regular");
+              }
+            }
+
+            //JS của sản phẩm 
+            let visibleCount = 6; // số sản phẩm hiển thị ban đầu
+            const step = 3; // số sản phẩm thêm mỗi lần
+            const grid = document.getElementById("productGrid");
+            const products = Array.from(grid.getElementsByClassName("product"));
+            const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+            // Hàm hiển thị theo số lượng visibleCount
+            function showProducts() {
+              products.forEach((p, i) => {
+                p.style.display = i < visibleCount ? "block" : "none";
+              });
+              loadMoreBtn.style.display = visibleCount >= products.length ? "none" : "inline-block";
+            }
+
+            // Hàm load thêm
+            loadMoreBtn.addEventListener("click", () => {
+              visibleCount += step;
+              showProducts();
+            });
+            // Khởi tạo ban đầu
+            showProducts();
+          </script>
+
+          <!-- JS của phần Header -->
+          <script>
+            const overlay = document.getElementById('overlay');
+            const dropdowns = {
+              menuBtn: 'menuDropdown',
+              favBtn: 'favDropdown',
+              notiBtn: 'notiDropdown',
+              avatarBtn: 'dropdownMenu'
+            };
+
+            Object.entries(dropdowns).forEach(([btnId, menuId]) => {
+              const btn = document.getElementById(btnId);
+              const menu = document.getElementById(menuId);
+
+              btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = !menu.classList.contains('hidden');
+
+                Object.values(dropdowns).forEach(id =>
+                  document.getElementById(id).classList.add('hidden')
+                );
+
+                if (isOpen) {
+                  menu.classList.add('hidden');
+                  overlay.classList.add('hidden');
+                } else {
+                  menu.classList.remove('hidden');
+                  overlay.classList.remove('hidden');
+                }
+              });
+            });
+
+            overlay.addEventListener('click', () => {
+              overlay.classList.add('hidden');
+              Object.values(dropdowns).forEach(id =>
+                document.getElementById(id).classList.add('hidden')
+              );
+            });
+
+            document.addEventListener('click', (e) => {
+              if (!Object.keys(dropdowns).some(btnId =>
+                document.getElementById(btnId).contains(e.target)
+              )) {
+                overlay.classList.add('hidden');
+                Object.values(dropdowns).forEach(id =>
+                  document.getElementById(id).classList.add('hidden')
+                );
+              }
+            });
+          </script>
+</body>
+
+</html>

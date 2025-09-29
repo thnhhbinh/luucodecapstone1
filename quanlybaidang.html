@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Market — Tài khoản</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Overlay nền mờ -->
+  <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40"></div>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full bg-red-600 text-white shadow-md z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-2">
+      <!-- Danh mục -->
+      <div class="relative">
+        <div class="flex items-center space-x-4">
+          <button id="menuBtn"
+            class="w-8 h-8 flex items-center justify-center bg-white text-red-600 rounded-md shadow hover:bg-gray-200">
+            <img src="image/header/menu.png" alt="Menu" class="w-5 h-5" />
+          </button>
+          <a href="trangchu.html" class="text-xl font-extrabold transition">STUDENT MARKET</a>
+        </div>
+
+        <div id="menuDropdown"
+          class="hidden absolute left-0 mt-4 w-72 bg-white text-gray-700 rounded-md shadow-lg z-50">
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/document.png" alt="icon" class="w-5 h-5" />
+                <span>Sách & Tài liệu học tập</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <!-- Danh mục con -->
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 180px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Giáo trình</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Sách tham khảo</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Sách ngoại ngữ</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Truyện, tiểu thuyết</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/responsive.png" alt="icon" class="w-5 h-5" />
+                <span>Đồ điện tử & Công nghệ</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <!-- Danh mục con -->
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 190px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Điện thoại & Tablet</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Laptop & PC</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Phụ kiện & Linh kiện</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Thiết bị khác</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/stationery.png" alt="icon" class="w-5 h-5" />
+                <span>Đồ dùng học tập</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 160px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Vở & Sổ tay</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Bút & Thước</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Máy tính cầm tay</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Dụng cụ vẽ</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/sofa.png" alt="icon" class="w-5 h-5" />
+                <span>Đồ gia dụng</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 300px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Đồ bếp (nồi, chảo , bếp
+                điện)</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Điện gia dụng (nồi cơm, ấm
+                siêu tốc)</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Nội thất (bàn, ghế, kệ)</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Đèn học & Đèn ngủ</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Chén, ly, muỗng, đũa</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/laundry.png" alt="icon" class="w-5 h-5" />
+                <span>Thời trang & Phụ kiện</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 190px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Quần áo</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Giày dép</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Balo & Túi Xách</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Đồng hồ & Trang sức</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/sports.png" alt="icon" class="w-5 h-5" />
+                <span>Đồ thể thao & Giải trí</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 200px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Xe đạp & Ván trượt</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Gym & Yoga</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Bóng & Vợt</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Nhạc cụ</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Boardgame & Đồ chơi</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/other.png" alt="icon" class="w-5 h-5" />
+                <span>Khác</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 190px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Đồ decor & Trang trí</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Thú cưng</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Vé sự kiện & Vé xe</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Sưu tầm</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="flex-1 px-4 flex justify-center">
+        <div class="relative w-full max-w-md">
+          <input type="text" placeholder="Tìm đồ dùng cũ..."
+            class="w-full px-4 py-2 pl-10 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-400" />
+          <button id="searchBtn" class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-red-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Icons + buttons -->
+      <div class="flex items-center space-x-3">
+        <!-- Yêu thích -->
+        <div class="relative">
+          <button id="favBtn" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-500">
+            <img src="image/header/like.png" alt="Yêu Thích" class="w-6 h-6" />
+          </button>
+
+          <div id="favDropdown"
+            class="hidden absolute right-0 mt-4 w-56 bg-white text-gray-700 rounded-md shadow-lg z-50">
+            <p class="px-4 py-2 font-semibold border-b">Yêu thích</p>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Laptop cũ giá rẻ</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Xe đạp thể thao</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Giáo trình đại học</a>
+          </div>
+        </div>
+
+        <!-- Thông báo -->
+        <div class="relative">
+          <button id="notiBtn" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-500">
+            <img src="image/header/notification.png" alt="Thông báo" class="w-6 h-6" />
+          </button>
+
+          <div id="notiDropdown"
+            class="hidden absolute right-0 mt-4 w-64 bg-white text-gray-700 rounded-md shadow-lg z-50">
+            <p class="px-4 py-2 font-semibold border-b">Thông báo</p>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Nguyễn An đã nhắn bạn về
+              "Laptop
+              cũ"</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Sản phẩm "Xe đạp thể
+              thao" đã có
+              người quan tâm</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Bạn có 1 đánh giá mới</a>
+          </div>
+        </div>
+
+        <!-- Đăng bài -->
+        <button class="bg-white text-red-600 px-3 py-1 rounded-md hover:bg-gray-200">
+          Đăng bài
+        </button>
+
+        <!-- Avatar + dropdown -->
+        <div class="relative">
+          <button id="avatarBtn"
+            class="bg-red-500 p-2 rounded-full flex items-center space-x-1 hover:bg-red-400 relative overflow-visible">
+            <img src="image/header_user/avartar.jpg" alt="Avatar" class="w-7 h-7 rounded-full object-cover -m-1" />
+            <!-- Mũi tên dropdown avatar -->
+            <svg class="w-7 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 10 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Dropdown menu -->
+          <div id="dropdownMenu"
+            class="hidden absolute right-0 mt-3.5 w-72 bg-white rounded-xl shadow-lg z-50 overflow-hidden">
+
+            <!-- Header -->
+            <div class="p-4 border-b flex justify-center bg-gray-100">
+              <p class="text-sm text-black leading-snug text-center">
+                Xin chào, <span class="font-bold">Hoàng Thanh An</span>
+              </p>
+            </div>
+
+            <!-- Menu items -->
+            <div class="flex flex-col">
+              <a href="thongtintaikhoan.html" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/setting.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Thông tin tài khoản</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="quanlybaidang.html" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/edit.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Quản lý bài đăng</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="lichsugiaodich.html" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/file.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Lịch sử giao dịch</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="gopy.html" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/gopy.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Góp ý & hỗ trợ</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="dieukhoansudung.html" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/information.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Điều khoản sử dụng</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="#" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/logout.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-red-600">Đăng xuất</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+            </div>
+
+            <!-- Footer: ngôn ngữ -->
+            <div class="border-t px-4 py-2 flex justify-center items-center text-xs font-medium bg-gray-200">
+              <a href="#" class="text-red-600">Tiếng Việt</a>
+              <span class="mx-1 text-gray-500">/</span>
+              <a href="#" class="text-gray-800 hover:text-black">English</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-4 pt-8">
+
+      <!-- Phần trên: Hồ sơ (PROFILE) -->
+      <section class="bg-white rounded-2xl shadow p-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3">
+          <!-- Cột 1: Avatar + tên + theo dõi -->
+          <div class="flex items-center gap-4 px-2 py-4 md:py-0 md:pr-6 md:border-r">
+            <!-- Avatar + nút đổi ảnh -->
+            <div class="relative shrink-0 w-20 h-20">
+              <img src="image/header_user/avartar.jpg" alt="Avatar"
+                class="w-20 h-20 rounded-full object-cover border" />
+
+              <!-- Nút camera -->
+              <button type="button"
+                class="absolute bottom-0 right-0 bg-gray-200 rounded-full p-1 shadow hover:bg-gray-300">
+                <img src="image/thongtintaikhoan/photo-camera.png" alt="Đổi ảnh đại diện" class="w-4 h-4" />
+              </button>
+            </div>
+
+            <!-- Tên + số theo dõi -->
+            <div class="flex flex-col justify-center">
+              <h2 class="text-base font-semibold text-gray-900 truncate">Hoàng Thanh An</h2>
+              <div class="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
+                <span>Người theo dõi: <b class="font-semibold text-gray-900">18</b></span>
+                <span class="hidden md:inline text-gray-300">|</span>
+                <span>Đang theo dõi: <b class="font-semibold text-gray-900">3</b></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cột 2: Đánh giá -->
+          <div class="px-2 py-4 md:py-0 md:px-6 md:border-r flex items-center justify-center text-center">
+            <div>
+              <p class="text-base font-semibold text-gray-900">Đánh giá</p>
+              <div class="mt-1 flex items-center justify-center gap-1" aria-label="4.7 trên 5">
+                <!-- 4 sao đầy -->
+                <svg class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.968 0 1.371 1.24.588 1.81l-2.802 2.035a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.035a1 1 0 00-1.175 0l-2.802 2.035c-.784.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.879 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                </svg> <svg class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.968 0 1.371 1.24.588 1.81l-2.802 2.035a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.035a1 1 0 00-1.175 0l-2.802 2.035c-.784.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.879 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                </svg> <svg class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.968 0 1.371 1.24.588 1.81l-2.802 2.035a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.035a1 1 0 00-1.175 0l-2.802 2.035c-.784.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.879 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                </svg> <svg class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.968 0 1.371 1.24.588 1.81l-2.802 2.035a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.035a1 1 0 00-1.175 0l-2.802 2.035c-.784.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.879 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                </svg>
+                <!-- sao thứ 5 rỗng -->
+                <svg class="w-5 h-5 text-gray-300" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.968 0 1.371 1.24.588 1.81l-2.802 2.035a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.035a1 1 0 00-1.175 0l-2.802 2.035c-.784.57-1.84-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.879 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+                </svg>
+              </div>
+              <p class="mt-1 text-sm text-gray-900">
+                <span class="font-semibold">4.7</span>
+                <span class="text-gray-400">(14 đánh giá)</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Cột 3: Điểm tích lũy -->
+          <div class="px-2 py-4 md:py-0 md:pl-6 flex items-center justify-center">
+            <div class="flex items-center gap-3">
+              <!-- Icon ngôi sao trong hình tròn -->
+              <div class="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center">
+                <img src="image/thongtintaikhoan/star.png" alt="Star" class="w-10 h-10" />
+              </div>
+              <!-- Thông tin điểm -->
+              <div class="flex flex-col justify-center">
+                <p class="text-base font-semibold text-gray-900">Điểm tích luỹ</p>
+                <p class="mt-0.5 text-sm text-gray-600">Khả dụng: <b class="font-semibold text-gray-900">200 điểm</b>
+                </p>
+                <p class="text-sm text-gray-600">Tổng tích luỹ: <b class="font-semibold text-gray-900">510 điểm</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Layout 2 cột -->
+      <div class="flex flex-col md:flex-row gap-6">
+
+        <!-- Main Container -->
+        <div class="flex flex-col md:flex-row gap-6">
+
+          <!-- Sidebar -->
+          <aside class="md:col-span-3">
+            <nav class="bg-white rounded-2xl shadow divide-y top-24 w-[245px]">
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50 rounded-tl-2xl rounded-tr-2xl"
+                href="tongquan.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/home.png" alt="Tổng Quan" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Tổng Quan</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="thongtintaikhoan.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/setting.png" alt="Thông tin tài khoản" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Thông tin tài khoản</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 bg-red-50" href="quanlybaidang.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/edit-red.png" alt="Quản lí bài đăng" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-red-600 font-semibold">Quản lý bài đăng</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="lichsugiaodich.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/file.png" alt="Lịch sử giao dịch" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Lịch sử giao dịch</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="tichluydiem.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/tichluy.png" alt="Tích lũy điểm" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Tích lũy điểm</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="danhgia.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/danhgia.png" alt="Đánh giá" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Đánh giá</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="gopy.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/gopy.png" alt="Góp ý & hỗ trợ" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Góp ý & hỗ trợ</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50" href="dieukhoansudung.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/dieukhoan.png" alt="Điều khoản sử dụng" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Điều khoản sử dụng</span>
+              </a>
+
+              <a class="flex items-center gap-3 px-6 py-3 hover:bg-gray-50 rounded-bl-2xl rounded-br-2xl"
+                href="header.html">
+                <!-- Icon bằng ảnh -->
+                <img src="image/thongtintaikhoan/dangxuat.png" alt="Đăng xuất" class="w-6 h-6 object-cover" />
+                <!-- Nội dung -->
+                <span class="text-gray-800 font-semibold">Đăng xuất</span>
+              </a>
+            </nav>
+          </aside>
+
+          <!-- Nội dung quản lý bài đăng -->
+          <section class="flex-1 space-y-6">
+            <div class="bg-white rounded-2xl shadow">
+              <!-- Tabs -->
+              <div class="border-b text-sm font-medium text-gray-600 px-5 py-2" role="tablist">
+                <!-- Hàng 1: 6 tab chia đều -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+                  <button type="button" data-tab="showing" aria-selected="true"
+                    class="tab-btn w-full text-center px-4 py-2 border-b-2 border-red-600 text-red-600 rounded-t-lg">
+                    Đang hiển thị
+                    <span
+                      class="ml-1 inline-flex min-w-6 h-5 px-1 items-center justify-center rounded-full bg-red-50 text-red-600"
+                      data-count="showing">6</span>
+                  </button>
+
+                  <button type="button" data-tab="expired" aria-selected="false"
+                    class="tab-btn w-full text-center px-4 py-2 hover:text-red-600">
+                    Hết hạn
+                    <span class="ml-1 inline-flex min-w-6 h-5 px-1 items-center justify-center rounded-full bg-gray-100"
+                      data-count="expired">2</span>
+                  </button>
+
+                  <button type="button" data-tab="draft" aria-selected="false"
+                    class="tab-btn w-full text-center px-4 py-2 hover:text-red-600">
+                    Bản nháp
+                    <span class="ml-1 inline-flex min-w-6 h-5 px-1 items-center justify-center rounded-full bg-gray-100"
+                      data-count="draft">2</span>
+                  </button>
+
+                  <button type="button" data-tab="pending" aria-selected="false"
+                    class="tab-btn w-full text-center px-4 py-2 hover:text-red-600">
+                    Chờ duyệt
+                    <span class="ml-1 inline-flex min-w-6 h-5 px-1 items-center justify-center rounded-full bg-gray-100"
+                      data-count="pending">1</span>
+                  </button>
+
+                  <button type="button" data-tab="rejected" aria-selected="false"
+                    class="tab-btn w-full text-center px-4 py-2 hover:text-red-600">
+                    Bị từ chối
+                    <span class="ml-1 inline-flex min-w-6 h-5 px-1 items-center justify-center rounded-full bg-gray-100"
+                      data-count="rejected">1</span>
+                  </button>
+
+                  <button type="button" data-tab="done" aria-selected="false"
+                    class="tab-btn w-full text-center px-4 py-2 hover:text-red-600">
+                    Hoàn thành
+                    <span class="ml-1 inline-flex min-w-6 h-5 px-1 items-center justify-center rounded-full bg-gray-100"
+                      data-count="done">1</span>
+                  </button>
+                </div>
+
+                <!-- Hàng 2: ô tìm kiếm (nằm bên phải) -->
+                <div class="mt-2 flex justify-end">
+                  <div class="relative w-full sm:w-72 md:w-80">
+                    <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
+                      </svg>
+                    </span>
+                    <input id="searchInput" type="text" placeholder="Tìm bài đăng của bạn..." class="w-full h-9 pl-9 pr-9 text-sm rounded-full border border-gray-300 bg-white
+                 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent">
+                    <button id="clearSearch" type="button" class="hidden absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full
+                 text-gray-500 hover:bg-gray-100" aria-label="Xoá tìm kiếm">&times;</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <div id="tabContent"></div>
+              </div>
+            </div>
+
+
+            <!-- ===== Modal Danh sách yêu cầu ===== -->
+            <div id="requestsModal" class="hidden fixed inset-0 z-[60]">
+              <div id="requestsBackdrop" class="absolute inset-0 bg-black/50"></div>
+              <div class="absolute inset-0 flex items-center justify-center p-4">
+                <div class="w-full max-w-xl bg-white rounded-2xl shadow-lg">
+                  <div class="px-6 py-4 border-b flex items-center justify-between">
+                    <h3 class="font-semibold text-red-600">DANH SÁCH YÊU CẦU</h3>
+                    <button id="requestsClose" type="button"
+                      class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-600">&times;</button>
+                  </div>
+                  <div id="requestsBody" class="p-4 space-y-3 max-h-[60vh] overflow-auto"></div>
+                  <div class="px-6 py-3 border-t flex items-center justify-end gap-2">
+                    <button id="requestsMore" type="button"
+                      class="hidden px-4 py-2 text-sm rounded-md bg-gray-50 hover:bg-gray-100">Xem thêm</button>
+                    <button id="requestsConfirm" type="button"
+                      class="px-4 py-2 text-sm rounded-md bg-red-600 text-white hover:bg-red-700">Chọn người
+                      nhận</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /Modal -->
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== JS: danh sách + modal ===== -->
+  <script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const content = document.getElementById('tabContent');
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearSearch');
+
+    const countEls = {
+      showing: document.querySelector('[data-count="showing"]'),
+      expired: document.querySelector('[data-count="expired"]'),
+      draft: document.querySelector('[data-count="draft"]'),
+      pending: document.querySelector('[data-count="pending"]'),
+      rejected: document.querySelector('[data-count="rejected"]'),
+      done: document.querySelector('[data-count="done"]')
+    };
+
+    // MOCK data
+    const MOCK = {
+      showing: [
+        { id: 1, title: "Nồi cơm Delites", location: "Phường Hòa Khánh, Quận Thanh Khê, Đà Nẵng", date: "14/09/2025", requests: 15, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEsjH8fcZo5XX7oMMiC2odUzeCQxcr3YEVVw&s" },
+        { id: 2, title: "Ghế cũ", location: "Hải Châu, Đà Nẵng", date: "12/09/2025", requests: 20, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsOKgBLwibC6K8TFF990cIBxVyMLiIK6aqpg&s" },
+        { id: 9, title: "Bàn học gỗ", location: "Liên Chiểu, Đà Nẵng", date: "11/09/2025", requests: 2, img: "https://banghethanhly.vn/wp-content/uploads/2023/09/Ban-hoc-ban-lam-viec-go-cu.jpg" },
+        { id: 10, title: "Kệ sách nhỏ", location: "Sơn Trà, Đà Nẵng", date: "10/09/2025", requests: 5, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkJJped2PyRZ6mNuqZCnhmfIirSRGO3Lge2w&s" },
+        { id: 11, title: "Đèn bàn LED", location: "Cẩm Lệ, Đà Nẵng", date: "09/09/2025", requests: 1, img: "https://cdn.chotot.com/SVbirT1au-4cQdwjQwvhn0EhvnBWjGPSNLE2BrIItos/preset:listing/plain/f4d7bec7ed30a43b393728c9198c7d17-2949014719653316794.jpg" },
+        { id: 12, title: "Máy in mini", location: "Hòa Vang, Đà Nẵng", date: "08/09/2025", requests: 7, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd9tl0aVomu-YEimhTOhfmSqvtCfF2YvCbWQ&s" }
+      ],
+      expired: [
+        { id: 3, title: "Ghế sofa cũ", location: "Thanh Khê, Đà Nẵng", date: "05/09/2025", requests: 0, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkJJped2PyRZ6mNuqZCnhmfIirSRGO3Lge2w&s" },
+        { id: 13, title: "Ấm siêu tốc ", location: "Sơn Trà, Đà Nẵng", date: "03/09/2025", requests: 0, img: "https://hangthanhly436.com/wp-content/uploads/2025/05/do-gia-dung-cu-33.jpg" }
+      ],
+      draft: [
+        { id: 4, title: "Máy xay mini (nháp)", location: "Sơn Trà, Đà Nẵng", date: "—", requests: 0, img: "https://cdn.chotot.com/55hXDIO0G3jp9aOxZzwQz8O8K6BKHP9dgEDMkxGmtvI/preset:listing/plain/ae12a02b6b9d948d6a60f26d04d384e2-2950007133688947682.jpg" },
+        { id: 14, title: "Bàn phím cơ (nháp)", location: "Hải Châu, Đà Nẵng", date: "—", requests: 0, img: "https://bizweb.dktcdn.net/thumb/1024x1024/100/503/209/products/z5190967125871-ea4452ff31e2affed590e5a83b00b643.jpg?v=1708842896813" }
+      ],
+      pending: [
+        { id: 15, title: "Quạt bàn mini", location: "Ngũ Hành Sơn, Đà Nẵng", date: "07/09/2025", requests: 3, img: "https://cdn.chotot.com/a6vXmo7AdJDcqkndOGfZudNdaQ28GXB7RMLaO4mKqwU/preset:listing/plain/36df332317e8134d4db221ce98b66c0f-2948621820347818482.jpg" }
+      ],
+      rejected: [
+        { id: 16, title: "Bình giữ nhiệt cũ", location: "Thanh Khê, Đà Nẵng", date: "06/09/2025", requests: 0, img: "https://cdn.chotot.com/55hXDIO0G3jp9aOxZzwQz8O8K6BKHP9dgEDMkxGmtvI/preset:listing/plain/ae12a02b6b9d948d6a60f26d04d384e2-2950007133688947682.jpg" }
+      ],
+      done: [
+        { id: 17, title: "Balo laptop", location: "Hải Châu, Đà Nẵng", date: "01/09/2025", requests: 5, img: "https://laptopkimcuong.com/upload/asset/balo-gaming-cu-gia-re-107202413585m.jpg" }
+      ]
+    }
+
+    // MOCK danh sách yêu cầu theo bài đăng
+    const REQUESTS_MOCK = {
+      1: [
+        { id: 'u1', name: 'Nguyễn Văn Hiếu', rating: 4.7, total: 14, quote: 'Nếu mình là bạn thì mình thực sự cần món đồ này để nấu ăn trong phòng trọ, cảm ơn bạn rất nhiều…' },
+        { id: 'u2', name: 'Trần Kim Yến', rating: 4.6, total: 9, quote: 'Mình là sinh viên năm nhất, món này thật sự hữu ích cho mình khi mới lên ở trọ…' },
+        { id: 'u3', name: 'Hoàng Minh Sang', rating: 5.0, total: 1, quote: 'Mình vừa chuyển phòng, đang cần gấp. Nếu được cho mình xin nhé…' },
+        { id: 'u4', name: 'Phạm Nhật H', rating: 4.9, total: 21, quote: 'Có thể giao vào cuối tuần không ạ? Em đi học cả tuần…' }
+      ],
+      2: [{ id: 'u2', name: 'Trần Kim Yến', rating: 4.6, total: 9, quote: 'Em cần ghế để ngồi học…' }],
+      9: [], 10: [], 11: [], 12: []
+    };
+
+    // Phân trang
+    const PAGE_SIZE = 3;
+    const pages = { showing: 1, expired: 1, draft: 1, pending: 1, rejected: 1, done: 1 };
+    let currentTab = 'showing';
+
+    // Filter
+    function getFiltered(tabKey) {
+      const all = MOCK[tabKey] || [];
+      const kw = (searchInput.value || '').trim().toLowerCase();
+      if (!kw) return all;
+      return all.filter(p =>
+        (p.title || '').toLowerCase().includes(kw) ||
+        (p.location || '').toLowerCase().includes(kw)
+      );
+    }
+
+    // Cập nhật badge tổng
+    function updateTabCounts() {
+      Object.keys(countEls).forEach(key => {
+        const total = (MOCK[key] || []).length;
+        countEls[key].textContent = String(total);
+      });
+    }
+
+   // --- REPLACE toàn bộ hàm renderPosts bằng hàm dưới ---
+function renderPosts(tabKey) {
+  const filtered = getFiltered(tabKey);
+  if (filtered.length === 0) {
+    return `<div class="text-center text-gray-500 py-6">Không có bài nào.</div>`;
+  }
+
+  const page = pages[tabKey] || 1;
+  const end = Math.min(page * PAGE_SIZE, filtered.length);
+  const visible = filtered.slice(0, end);
+  const hasMore = end < filtered.length;
+
+  const showActions = tabKey === 'showing';
+
+  const listHTML = `
+    <ul class="space-y-4">
+      ${visible.map(p => {
+        const isHot = (p.requests || 0) >= 10;
+        return `
+        <li class="relative group bg-white rounded-2xl border border-gray-200 shadow-md
+                   hover:shadow-xl hover:border-red-300 hover:-translate-y-0.5
+                   ring-1 ring-transparent hover:ring-red-100 transition-all duration-200">
+          <div class="flex items-start justify-between gap-5 px-5 py-4">
+
+            <!-- Hình + nhãn -->
+            <div class="relative">
+              <img src="${p.img}" alt="sp"
+                   class="w-28 h-28 rounded-xl object-cover border border-gray-200" />
+              ${isHot ? `
+                <span class="absolute -top-2 -left-2 px-2 py-0.5 text-xs font-semibold
+                             rounded-full bg-red-600 text-white shadow">
+                  Hot
+                </span>` : ``}
+              <span class="absolute bottom-1 right-1 text-[10px] px-1.5 py-0.5 rounded
+                           bg-black/60 text-white">
+                ${p.requests || 0} yêu cầu
+              </span>
+            </div>
+
+            <!-- Thông tin -->
+            <div class="flex-1">
+              <p class="font-semibold text-gray-900 leading-snug">${p.title}</p>
+              <p class="mt-1 text-xs text-gray-500">${p.location}</p>
+              <p class="text-xs text-gray-500">Ngày đăng: ${p.date}</p>
+              ${tabKey === 'rejected'
+                ? `<p class="text-xs text-red-500 mt-1">Lý do: Có dấu hiệu bất thường</p>` : ``}
+            </div>
+
+            <!-- Hành động -->
+            <div class="flex flex-col items-end gap-2">
+              ${tabKey === 'showing' ? `
+                <button data-open-requests="${tabKey}-${p.id}"
+                        class="text-xs text-red-600 font-semibold underline underline-offset-2
+                               hover:text-red-700 focus:outline-none focus-visible:ring-2
+                               focus-visible:ring-red-300 rounded">
+                  DANH SÁCH YÊU CẦU (${p.requests})
+                </button>` : ``}
+
+              ${showActions ? `
+                <div class="flex gap-2">
+                  <button class="px-3 py-1.5 rounded-md border border-gray-200 hover:bg-gray-50 text-sm
+                                 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-300">Xóa bài</button>
+                  <button class="px-3 py-1.5 rounded-md border border-red-300 text-red-600 hover:bg-red-50 text-sm
+                                 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300">Sửa bài</button>
+                </div>` : ``}
+
+              ${tabKey === 'expired' ? `
+                <div class="flex gap-2">
+                  <button class="px-3 py-1.5 rounded-md border border-green-300 text-green-600 hover:bg-green-50 text-sm
+                                 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-300">Đăng lại</button>
+                  <button class="px-3 py-1.5 rounded-md border border-gray-200 hover:bg-gray-50 text-sm
+                                 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-300">Xoá bài</button>
+                </div>` : ``}
+
+              ${tabKey === 'draft' ? `
+                <div class="flex gap-2">
+                  <button class="px-3 py-1.5 rounded-md border border-gray-200 hover:bg-gray-50 text-sm
+                                 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-300">Xoá nháp</button>
+                  <button class="px-3 py-1.5 rounded-md border border-blue-300 text-blue-600 hover:bg-blue-50 text-sm
+                                 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300">Sửa nháp</button>
+                </div>` : ``}
+            </div>
+          </div>
+        </li>`;
+      }).join('')}
+    </ul>
+  `;
+
+  const moreBtn = hasMore
+    ? `<div class="px-5 py-4 border-t flex items-center justify-center">
+         <button data-action="load-more"
+                 class="px-5 py-2 rounded-md bg-gray-200 hover:bg-gray-100
+                        focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-300">
+           Xem thêm
+         </button>
+       </div>`
+    : '';
+
+  return listHTML + moreBtn;
+}
+
+
+    // Load tab
+    async function loadTab(tabKey) {
+      currentTab = tabKey;
+      content.innerHTML = `
+        <div class="flex items-center gap-2 text-gray-500">
+          <svg class="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10" stroke-width="4" class="opacity-25"></circle>
+            <path d="M4 12a8 8 0 018-8" stroke-width="4" class="opacity-75"></path>
+          </svg>
+          Đang tải...
+        </div>`;
+      await new Promise(r => setTimeout(r, 120));
+      content.innerHTML = renderPosts(tabKey);
+      updateTabCounts();
+      attachOpenRequestsHandlers();
+    }
+
+    // Active style
+    function setActive(tab) {
+      tabs.forEach(t => t.classList.remove('border-red-600', 'text-red-600', 'border-b-2'));
+      tabs.forEach(t => t.classList.add('hover:text-red-600', 'border-transparent'));
+      tab.classList.add('border-red-600', 'text-red-600', 'border-b-2');
+      tab.classList.remove('hover:text-red-600', 'border-transparent');
+    }
+
+    // Click tab
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const key = tab.dataset.tab;
+        pages[key] = 1;
+        setActive(tab);
+        loadTab(key);
+      });
+    });
+
+    // Load more (delegation)
+    content.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-action="load-more"]');
+      if (!btn) return;
+      pages[currentTab] = (pages[currentTab] || 1) + 1;
+      content.innerHTML = renderPosts(currentTab);
+      attachOpenRequestsHandlers();
+    });
+
+    // Search + clear
+    function rerenderAfterChange() {
+      pages[currentTab] = 1;
+      content.innerHTML = renderPosts(currentTab);
+      attachOpenRequestsHandlers();
+    }
+    function toggleClearBtn() {
+      clearBtn.classList[searchInput.value.trim() ? 'remove' : 'add']('hidden');
+    }
+    searchInput.addEventListener('input', () => { rerenderAfterChange(); toggleClearBtn(); });
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (e.key === 'Escape') { searchInput.value = ''; rerenderAfterChange(); toggleClearBtn(); }
+    });
+    clearBtn?.addEventListener('click', () => {
+      searchInput.value = '';
+      rerenderAfterChange();
+      toggleClearBtn();
+      searchInput.focus();
+    });
+
+    // ===== Modal logic =====
+    let currentPostId = null;
+    let currentReqPage = 1;
+    const REQ_PAGE_SIZE = 3;
+
+    const requestsModal = document.getElementById('requestsModal');
+    const requestsClose = document.getElementById('requestsClose');
+    const requestsBackdrop = document.getElementById('requestsBackdrop');
+    const requestsBody = document.getElementById('requestsBody');
+    const requestsMoreBtn = document.getElementById('requestsMore');
+    const requestsConfirm = document.getElementById('requestsConfirm');
+
+    function getInitials(fullname = '') {
+      return fullname
+        .trim()
+        .split(/\s+/)
+        .slice(0, 2)                 // lấy 1–2 từ đầu
+        .map(w => w[0]?.toUpperCase() || '')
+        .join('') || '?';
+    }
+
+
+    function renderRequestItem(item) {
+      const avatarHTML = item.avatar && item.avatar.trim()
+        ? `<img src="${item.avatar}"
+            onerror="this.onerror=null;this.src='image/header/profile-user.png';"
+            alt="${item.name}"
+            class="w-10 h-10 rounded-full object-cover ring-1 ring-gray-200">`
+        : `<div class="w-10 h-10 rounded-full bg-gray-200 ring-1 ring-gray-200
+                  flex items-center justify-center text-sm font-semibold text-gray-700">
+         ${getInitials(item.name)}
+       </div>`;
+
+      return `
+    <label class="flex items-start gap-3 p-3 border rounded-xl hover:bg-gray-50">
+      <input type="radio" name="requestUser" value="${item.id}" class="mt-2">
+      ${avatarHTML}
+      <div class="flex-1">
+        <div class="flex items-center justify-between">
+          <p class="font-medium">${item.name}</p>
+          <span class="text-xs text-yellow-600">★ ${item.rating}
+            <span class="text-gray-500">(${item.total} đánh giá)</span>
+          </span>
+        </div>
+        <p class="text-sm text-gray-600 line-clamp-2">${item.quote || ''}</p>
+      </div>
+    </label>
+  `;
+    }
+
+
+    function renderRequestsList() {
+      const all = REQUESTS_MOCK[currentPostId] || [];
+      if (all.length === 0) {
+        requestsBody.innerHTML = `<div class="text-center text-gray-500 py-6">Chưa có yêu cầu nào cho bài đăng này.</div>`;
+        requestsMoreBtn.classList.add('hidden');
+        return;
+      }
+      const end = Math.min(currentReqPage * REQ_PAGE_SIZE, all.length);
+      const visible = all.slice(0, end);
+      requestsBody.innerHTML = visible.map(renderRequestItem).join('');
+      if (end < all.length) requestsMoreBtn.classList.remove('hidden');
+      else requestsMoreBtn.classList.add('hidden');
+    }
+
+    function openRequestsModal(compositeId) {
+      // compositeId format: tabKey-id
+      const [tabKey, id] = String(compositeId).split('-');
+      currentPostId = Number(id);
+      currentReqPage = 1;
+      renderRequestsList();
+      requestsModal.classList.remove('hidden');
+    }
+    function closeRequestsModal() {
+      requestsModal.classList.add('hidden');
+    }
+
+    // Gắn handler mở modal sau mỗi lần render danh sách
+    function attachOpenRequestsHandlers() {
+      content.querySelectorAll('[data-open-requests]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          openRequestsModal(btn.getAttribute('data-open-requests'));
+        });
+      });
+    }
+
+    // Modal events
+    requestsClose.addEventListener('click', closeRequestsModal);
+    requestsBackdrop.addEventListener('click', closeRequestsModal);
+    requestsMoreBtn.addEventListener('click', () => { currentReqPage += 1; renderRequestsList(); });
+    requestsConfirm.addEventListener('click', () => {
+      const selected = document.querySelector('input[name="requestUser"]:checked');
+      if (!selected) { alert('Vui lòng chọn một người nhận.'); return; }
+      // TODO: gọi API cập nhật người nhận cho currentPostId với selected.value
+      alert(`Đã chọn người nhận: ${selected.value}`);
+      closeRequestsModal();
+    });
+
+    // Khởi tạo
+    updateTabCounts();
+    setActive(document.querySelector('.tab-btn[data-tab="showing"]'));
+    loadTab('showing');
+    toggleClearBtn();
+  </script>
+
+
+
+
+
+  <!-- JS header giữ nguyên nghe bình ngu -->
+  <script>
+    const overlay = document.getElementById('overlay');
+    const dropdowns = {
+      menuBtn: 'menuDropdown',
+      favBtn: 'favDropdown',
+      notiBtn: 'notiDropdown',
+      avatarBtn: 'dropdownMenu'
+    };
+
+    Object.entries(dropdowns).forEach(([btnId, menuId]) => {
+      const btn = document.getElementById(btnId);
+      const menu = document.getElementById(menuId);
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !menu.classList.contains('hidden');
+
+        Object.values(dropdowns).forEach(id =>
+          document.getElementById(id).classList.add('hidden')
+        );
+
+        if (isOpen) {
+          menu.classList.add('hidden');
+          overlay.classList.add('hidden');
+        } else {
+          menu.classList.remove('hidden');
+          overlay.classList.remove('hidden');
+        }
+      });
+    });
+
+    overlay.addEventListener('click', () => {
+      overlay.classList.add('hidden');
+      Object.values(dropdowns).forEach(id =>
+        document.getElementById(id).classList.add('hidden')
+      );
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!Object.keys(dropdowns).some(btnId =>
+        document.getElementById(btnId).contains(e.target)
+      )) {
+        overlay.classList.add('hidden');
+        Object.values(dropdowns).forEach(id =>
+          document.getElementById(id).classList.add('hidden')
+        );
+      }
+    });
+  </script>
+</body>
+
+</html>

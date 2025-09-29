@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Người dùng</title>
+  <style>
+    :root {
+      --bg: #f7f6fb;
+      --surface: #fff;
+      --line: #e9e6ef;
+      --text: #1f1c2e;
+      --muted: #6b6780;
+      --primary: #7c4dff;
+      --primary-soft: #efe6ff;
+      --hover: #f6f5fb;
+      --hover-strong: #ece8ff;
+      --good: #12b886;
+      --bad: #e74c3c;
+      --radius: 16px;
+
+      --sidebar-w: 260px;
+      --gutter: 36px;
+      --wrap: 1440px;
+      --block-gap: 24px;
+    }
+
+    * { box-sizing: border-box }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 14px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: var(--surface);
+      border-right: 1px solid var(--line);
+      border-top-right-radius: 18px;
+      border-bottom-right-radius: 18px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 20;
+    }
+
+    .sb-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px
+    }
+
+    .sb-logo {
+      width: 48px; height: 44px;
+      border-radius: 12px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: grid; place-items: center;
+      font-weight: 800; font-size: 20px
+    }
+
+    .sb-brand { font-weight: 700; color: #4a4660 }
+
+    .sb-nav {
+      list-style: none;
+      margin: 8px 0 0; padding: 0;
+      display: flex; flex-direction: column; gap: 8px;
+      flex: 1; /* fill height */
+    }
+
+    /* === Nút sidebar (ĐÃ TĂNG KÍCH THƯỚC) === */
+    .sb-item {
+      display: flex; align-items: center; gap: 12px;
+      height: 56px;                      /* tăng từ 44px -> 56px */
+      border-radius: 14px;               /* bo lớn hơn chút */
+      padding: 0 14px;                   /* tăng padding ngang */
+      color: #3b3652;
+      cursor: pointer;
+      font-size: 15px;                   /* tăng cỡ chữ */
+      font-weight: 600;                  /* đậm hơn để rõ */
+      letter-spacing: .2px;
+      transition: background .15s ease, color .15s ease, transform .03s ease;
+      outline: none;
+      border: 1px solid transparent;     /* để có outline active/hover */
+    }
+
+    /* Icon riêng để to rõ và thẳng hàng */
+    .sb-ico {
+      width: 28px; min-width: 28px;      /* cố định cột icon */
+      text-align: center;
+      font-size: 20px;                   /* icon to hơn */
+      line-height: 1;
+      transform: translateY(-1px);       /* cân baseline với chữ */
+    }
+
+    .sb-item:hover {
+      background: var(--hover-strong);
+      border-color: #e2dcff;
+    }
+
+    .sb-item:active {
+      transform: scale(.99);
+    }
+
+    .sb-item.active {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-color: #dacbff;
+      box-shadow: 0 0 0 2px rgba(124,77,255,.10) inset;
+    }
+
+    /* Focus rõ ràng khi tab bàn phím */
+    .sb-item:focus-visible {
+      box-shadow: 0 0 0 3px rgba(124,77,255,.35);
+      border-color: var(--primary);
+      background: #f4f0ff;
+    }
+
+    /* Đẩy Logout xuống cuối */
+    .sb-logout { margin-top: auto; }
+
+    /* ===== Main ===== */
+    .wrap {
+      width: 100%;
+      margin: 0;
+      padding-left: calc(var(--sidebar-w) + var(--gutter));
+      padding-right: 32px;
+      padding-top: 28px;
+    }
+
+    .page-title {
+      font-weight: 800;
+      font-size: 24px;
+      margin: 6px 0 var(--block-gap)
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--block-gap);
+      margin-bottom: var(--block-gap);
+    }
+
+    .kcard {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+      padding: 18px 20px;
+      min-height: 96px;
+      display: flex; flex-direction: column; justify-content: center
+    }
+
+    .k-title { font-size: 13px; color: var(--muted); margin-bottom: 6px }
+    .k-row { display: flex; align-items: baseline; gap: 10px }
+    .k-value { font-size: 24px; font-weight: 800 }
+    .k-trend { font-size: 12px; color: var(--good) }
+    .k-trend.down { color: var(--bad) }
+
+    .filters {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+      padding: 16px 20px;
+      margin-bottom: var(--block-gap)
+    }
+    .filters h4 { margin: 0 0 10px; font-size: 14px; font-weight: 800 }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: 1fr 220px 220px 140px auto;
+      gap: 14px;
+      align-items: center
+    }
+
+    .input,.select,.btn {
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff; color: #2a2739
+    }
+    .input { padding: 0 12px; width: 100% }
+    .select { padding: 0 10px; width: 100% }
+    .btn { padding: 0 16px; cursor: pointer; background: #fff }
+
+    .right { justify-self: end; display: flex; align-items: center; gap: 10px }
+
+    /* ===== Table ===== */
+    .table {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+      overflow: hidden
+    }
+    table { width: 100%; border-collapse: collapse; table-layout: auto }
+    thead th, tbody td { padding: 16px 18px; vertical-align: middle }
+    thead th {
+      font-weight: 700; font-size: 13px; text-align: left; color: #4b465c;
+      background: #fbfaff; border-bottom: 1px solid var(--line)
+    }
+    tbody td { border-bottom: 1px solid var(--line) }
+    tr:last-child td { border-bottom: none }
+
+    .user { display: flex; align-items: center; gap: 12px }
+    .avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: grid; place-items: center; color: #fff; font-weight: 700
+    }
+    .name { font-weight: 600 }
+    .sub { font-size: 12px; color: var(--muted); margin-top: 2px }
+
+    .badge {
+      font-size: 12px; border-radius: 8px; padding: 4px 8px;
+      display: inline-block; border: 1px solid var(--line); background: #f7f6fb
+    }
+    .b-manager { background: #efeaff }
+    .b-user { background: #eaf7ff }
+
+    .s-active { background: #eafaf1; border-color: #cdebd7; color: #1e824c }
+    .s-inactive { background: #f1f2f6; color: #6b7280 }
+    .s-pending { background: #fff7e6; color: #b7791f; border-color: #fde6b0 }
+    .s-suspended { background: #ffecec; color: #b04545; border-color: #ffc5c5 }
+
+    .sort { color: #b3afc4; cursor: pointer; font-size: 12px; margin-left: 6px }
+
+    th:nth-last-child(2), td:nth-last-child(2) { width: 220px; text-align: left; }
+    th:last-child, td:last-child { width: 96px; text-align: right; }
+    .dots {
+      width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--line);
+      display: inline-grid; place-items: center; cursor: pointer; background: #fff
+    }
+
+    tbody td { transition: background .12s ease; }
+    tbody tr:hover td { background: #ececf4; }
+    tbody tr:hover td:last-child .dots { background: #fff; }
+
+    .tfoot {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 14px; color: var(--muted)
+    }
+    .pages { display: flex; gap: 8px; align-items: center }
+    .page-btn {
+      min-width: 30px; height: 30px; border-radius: 8px;
+      border: 1px solid var(--line); background: #fff; cursor: pointer
+    }
+    .page-btn.active { background: var(--primary); border-color: var(--primary); color: #fff }
+    .small { font-size: 12px; color: var(--muted) }
+
+    @media (max-width:1200px) {
+      .kpis { grid-template-columns: repeat(2, minmax(260px, 1fr)) }
+    }
+
+    @media (max-width:880px) {
+      :root { --sidebar-w: 220px; --gutter: 24px }
+      .filter-grid { grid-template-columns: 1fr 1fr 1fr 140px auto }
+    }
+
+    @media (max-width:720px) {
+      .wrap {
+        padding-left: 16px; padding-right: 16px;
+        margin-top: calc(var(--sidebar-w) + 24px)
+      }
+      .sidebar {
+        position: static; width: auto; height: auto; border-radius: 18px; margin: 16px
+      }
+      .kpis { grid-template-columns: 1fr }
+      .filter-grid { grid-template-columns: 1fr; gap: 10px }
+    }
+
+    /* ===== Floating Action Menu ===== */
+    .amenu {
+      position: fixed; z-index: 1000; width: 200px;
+      background: #f3f3fb; border: 1px solid var(--line); border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(31,28,46,.15);
+      padding: 8px 0; opacity: 0; transform: scale(.98);
+      pointer-events: none; transition: .12s ease;
+    }
+    .amenu.show { opacity: 1; transform: scale(1); pointer-events: auto; }
+    .amenu hr { border: 0; height: 1px; background: var(--line); margin: 6px 0; }
+    .amenu .item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; cursor: pointer; color: #2a2739;
+    }
+    .amenu .item:hover { background: #e6e6f7; }
+    .amenu .icon { width: 18px; height: 18px; display: grid; place-items: center; }
+    .amenu .danger { color: var(--bad); }
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-top">
+      <div class="sb-logo">SM</div>
+      <div class="sb-brand">Student Market</div>
+    </div>
+    <ul class="sb-nav">
+      <li class="sb-item"><span class="sb-ico">🏠</span><span>Dashboard</span></li>
+      <li class="sb-item active"><span class="sb-ico">👤</span><span>Người dùng</span></li>
+      <li class="sb-item"><span class="sb-ico">📦</span><span>Tin đăng</span></li>
+      <li class="sb-item sb-logout"><span class="sb-ico">⚙️</span><span>Đăng Xuất</span></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="wrap">
+    <h2 class="page-title">Người dùng</h2>
+
+    <section class="kpis">
+      <div class="kcard">
+        <div class="k-title">Tổng người dùng</div>
+        <div class="k-row"><span class="k-value" id="k-total">0</span><span class="k-trend">↑ 2.6%</span></div>
+      </div>
+      <div class="kcard">
+        <div class="k-title">Người dùng hoạt động</div>
+        <div class="k-row"><span class="k-value" id="k-active">0</span><span class="k-trend">↑ 2.6%</span></div>
+      </div>
+      <div class="kcard">
+        <div class="k-title">Người dùng mới</div>
+        <div class="k-row"><span class="k-value" id="k-new">0</span><span class="k-trend">− 0.8%</span></div>
+      </div>
+      <div class="kcard">
+        <div class="k-title">Bị đình chỉ</div>
+        <div class="k-row"><span class="k-value" id="k-sus">0</span><span class="k-trend down">↓ 2.8%</span></div>
+      </div>
+    </section>
+
+    <section class="filters">
+      <h4>Danh sách người dùng</h4>
+      <div class="filter-grid">
+        <input id="search" class="input" placeholder="Tìm người dùng..." />
+        <select id="roleFilter" class="select">
+          <option value="">Tất cả vai trò</option>
+          <option>Manager</option>
+          <option>User</option>
+        </select>
+        <select id="statusFilter" class="select">
+          <option value="">All Status</option>
+          <option>Active</option>
+          <option>InActive</option>
+          <option>Pending</option>
+          <option>Suspended</option>
+        </select>
+        <button id="resetBtn" class="btn">⟲ Reset</button>
+        <div class="right">
+          <select id="perPage" class="select" style="width:96px">
+            <option>10</option><option>25</option><option>50</option>
+          </select>
+          <span class="small">Người dùng mỗi trang</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="table">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px"><input type="checkbox" id="checkAll"></th>
+            <th>Người dùng <span class="sort" data-sort="name">↕</span></th>
+            <th>Email <span class="sort" data-sort="email">↕</span></th>
+            <th>Vai trò</th>
+            <th>Status</th>
+            <th>Tham gia <span class="sort" data-sort="joined">↕</span></th>
+            <th>Lần cuối hoạt động</th>
+            <th>Hoạt động</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="tfoot">
+        <div>
+          <div class="small" id="rangeText">Showing …</div>
+          <div class="small" id="rangeText2">Showing …</div>
+        </div>
+        <div class="pages" id="pagination"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Floating action menu -->
+  <div id="amenu" class="amenu" role="menu" aria-hidden="true">
+    <div class="item" data-action="view"><span class="icon">👁️</span> View</div>
+    <div class="item" data-action="edit"><span class="icon">✏️</span> Edit</div>
+    <hr>
+    <div class="item danger" data-action="delete"><span class="icon">🗑️</span> Delete</div>
+  </div>
+
+  <script>
+    const COLORS = ["#7c4dff", "#00b894", "#0984e3", "#e67e22", "#e84393", "#2d3436", "#d63031", "#fd79a8"];
+    const users = [
+      u("Jack J97", "phuongtuan97", "phuongtuan97@dtu.com", "Manager", "Active", "2025-04-09", "3 ngày trước"),
+    u("An Nguyen", "annguyen", "an.nguyen@dtu.com", "User", "InActive", "2025-04-09", "3 ngày trước"),
+    u("Bao Tran", "baotran", "bao.tran@dtu.com", "User", "Pending", "2025-04-09", "3 ngày trước"),
+    u("Linh Pham", "linhp", "linh.pham@dtu.com", "Manager", "Active", "2025-04-09", "3 ngày trước"),
+    u("Minh Chau", "mchau", "minh.chau@dtu.com", "Manager", "Active", "2025-04-09", "3 ngày trước"),
+    u("Quang Le", "quangle", "quang.le@dtu.com", "User", "Active", "2025-03-28", "1 ngày trước"),
+    u("Thu Ha", "thuha", "thu.ha@dtu.com", "User", "Suspended", "2025-03-11", "7 ngày trước"),
+    u("Phong Vu", "phongvu", "phong.vu@dtu.com", "User", "Active", "2025-02-21", "2 giờ trước"),
+
+    u("Tien Dat", "tiendat", "tien.dat@dtu.com", "User", "Active", "2025-05-01", "5 giờ trước"),
+    u("Huy Hoang", "huyhoang", "huy.hoang@dtu.com", "Manager", "Active", "2025-05-06", "12 phút trước"),
+    u("Khanh Ly", "khanhly", "khanh.ly@dtu.com", "User", "InActive", "2025-01-19", "12 ngày trước"),
+    u("Duc Anh", "ducanh", "duc.anh@dtu.com", "User", "Pending", "2025-06-01", "2 ngày trước"),
+    u("Ngoc Anh", "ngocanh", "ngoc.anh@dtu.com", "User", "Active", "2025-06-15", "1 giờ trước"),
+    u("My Dung", "mydung", "my.dung@dtu.com", "Manager", "Suspended", "2024-12-22", "2 tháng trước"),
+    u("Thanh Tung", "thanhtung", "thanh.tung@dtu.com", "User", "Active", "2025-07-04", "4 giờ trước"),
+    u("Gia Bao", "giabao", "gia.bao@dtu.com", "User", "Active", "2025-07-07", "8 giờ trước"),
+    u("Hoai Thu", "hoaithu", "hoai.thu@dtu.com", "User", "Pending", "2025-07-10", "3 ngày trước"),
+    u("Quynh Nhu", "quynhnhu", "quynh.nhu@dtu.com", "User", "InActive", "2025-02-02", "21 ngày trước"),
+    u("Anh Tuan", "anhtuan", "anh.tuan@dtu.com", "Manager", "Active", "2025-03-03", "30 phút trước"),
+    u("Bao Chau", "baochau", "bao.chau@dtu.com", "User", "Active", "2025-04-01", "10 phút trước"),
+
+    u("Trung Kien", "trungkien", "trung.kien@dtu.com", "User", "Suspended", "2024-11-09", "3 tháng trước"),
+    u("Kim Ngan", "kimngan", "kim.ngan@dtu.com", "User", "Active", "2025-05-22", "2 ngày trước"),
+    u("Thao Nguyen", "thaonguyen", "thao.nguyen@dtu.com", "Manager", "Active", "2025-06-20", "1 ngày trước"),
+    u("Viet Hung", "viethung", "viet.hung@dtu.com", "User", "Active", "2025-06-21", "1 ngày trước"),
+    u("Le Na", "lena", "le.na@dtu.com", "User", "Pending", "2025-06-25", "6 ngày trước"),
+    u("Bao Han", "baohan", "bao.han@dtu.com", "User", "InActive", "2025-01-05", "1 tháng trước"),
+    u("Phuong Uyen", "phuonguyen", "phuong.uyen@dtu.com", "User", "Active", "2025-05-30", "9 giờ trước"),
+    u("Khai Dang", "khaidang", "khai.dang@dtu.com", "User", "Active", "2025-07-18", "2 giờ trước"),
+    u("Dang Khoa", "dangkhoa", "dang.khoa@dtu.com", "User", "Active", "2025-07-20", "5 giờ trước"),
+    u("Yen Nhi", "yennhi", "yen.nhi@dtu.com", "User", "Suspended", "2024-12-01", "2 tháng trước"),
+
+    u("Hai Dang", "haidang", "hai.dang@dtu.com", "User", "Active", "2025-07-22", "4 phút trước"),
+    u("Ngoc Minh", "ngocminh", "ngoc.minh@dtu.com", "User", "Active", "2025-07-23", "40 phút trước"),
+    u("Bich Phuong", "bichphuong", "bich.phuong@dtu.com", "User", "InActive", "2025-03-09", "16 ngày trước"),
+    u("Minh Tri", "minhtri", "minh.tri@dtu.com", "User", "Active", "2025-04-18", "2 giờ trước"),
+    u("Anh Thu", "anhthu", "anh.thu@dtu.com", "Manager", "Active", "2025-05-11", "6 giờ trước"),
+    u("Thanh Ha", "thanhha", "thanh.ha@dtu.com", "User", "Pending", "2025-08-01", "1 ngày trước"),
+    u("Nhat Nam", "nhatnam", "nhat.nam@dtu.com", "User", "Active", "2025-08-03", "3 giờ trước"),
+    u("Thanh Tam", "thanhtam", "thanh.tam@dtu.com", "User", "Active", "2025-08-05", "12 phút trước"),
+    u("Duy Khang", "duykhang", "duy.khang@dtu.com", "User", "Active", "2025-08-07", "8 phút trước"),
+    u("Phuong Linh", "phuonglinh", "phuong.linh@dtu.com", "User", "Suspended", "2024-11-30", "5 tháng trước"),
+
+    u("Trang Nguyen", "trangng", "trang.nguyen@dtu.com", "User", "Active", "2025-08-09", "1 giờ trước"),
+    u("Thien Nhan", "thiennhan", "thien.nhan@dtu.com", "User", "Active", "2025-08-10", "10 giờ trước"),
+    u("Hoai Nam", "hoainam", "hoai.nam@dtu.com", "User", "InActive", "2025-02-15", "1 tháng trước"),
+    u("Quoc Viet", "quocviet", "quoc.viet@dtu.com", "User", "Pending", "2025-08-12", "2 ngày trước"),
+    u("Bao Nghi", "baonghi", "bao.nghi@dtu.com", "User", "Active", "2025-08-14", "30 phút trước"),
+    u("Tuong Vy", "tuongvy", "tuong.vy@dtu.com", "User", "Active", "2025-08-16", "3 giờ trước"),
+    u("Dinh Phuc", "dinhphuc", "dinh.phuc@dtu.com", "Manager", "Active", "2025-08-18", "2 giờ trước"),
+    u("Anh Kiet", "anhkiet", "anh.kiet@dtu.com", "User", "Active", "2025-08-19", "25 phút trước"),
+    u("Bao Thy", "baothy", "bao.thy@dtu.com", "User", "Active", "2025-08-20", "4 giờ trước"),
+    u("Kim Anh", "kimanh", "kim.anh@dtu.com", "User", "Suspended", "2024-12-18", "3 tháng trước"),
+
+    u("Anh Quan", "anhquan", "anh.quan@dtu.com", "User", "Active", "2025-08-21", "1 phút trước"),
+    u("Gia Huy", "giahuy", "gia.huy@dtu.com", "User", "Active", "2025-08-22", "11 phút trước"),
+    u("Khanh Huyen", "khanhhuyen", "khanh.huyen@dtu.com", "User", "Active", "2025-08-23", "5 giờ trước"),
+    u("Nhat Anh", "nhatanh", "nhat.anh@dtu.com", "User", "InActive", "2025-03-01", "2 tháng trước"),
+    u("Minh Hieu", "minhhieu", "minh.hieu@dtu.com", "User", "Pending", "2025-08-24", "7 giờ trước"),
+    u("Bao Long", "baolong", "bao.long@dtu.com", "User", "Active", "2025-08-25", "2 giờ trước"),
+    u("Thanh Son", "thanhson", "thanh.son@dtu.com", "User", "Active", "2025-08-26", "1 ngày trước"),
+    u("Lan Anh", "lananh", "lan.anh@dtu.com", "Manager", "Active", "2025-08-27", "50 phút trước"),
+    u("Kieu Oanh", "kieuanh", "kieu.anh@dtu.com", "User", "Active", "2025-08-28", "6 phút trước"),
+    u("Ngoc Ha", "ngocha", "ngoc.ha@dtu.com", "User", "Suspended", "2024-12-25", "4 tháng trước")
+    ];
+    function u(name, username, email, role, status, joined, lastActive) { return { name, username, email, role, status, joined, lastActive }; }
+
+    let state = { q: "", role: "", status: "", page: 1, perPage: 10, sortKey: "", sortDir: 1 };
+    const $ = s => document.querySelector(s);
+    const initials = n => n.split(" ").map(p => p[0]).join("").slice(0, 2).toUpperCase();
+    const avatarColor = seed => COLORS[[...seed].reduce((a, c) => a + c.charCodeAt(0), 0) % COLORS.length];
+
+    function filterData(d) {
+      return d.filter(u => {
+        const hit = (u.name + u.username + u.email).toLowerCase().includes(state.q);
+        return hit && (!state.role || u.role === state.role) && (!state.status || u.status === state.status);
+      });
+    }
+    function sortData(d) {
+      if (!state.sortKey) return d;
+      const k = state.sortKey;
+      return [...d].sort((a, b) => {
+        let A = a[k], B = b[k];
+        if (k === "joined") { A = new Date(a.joined); B = new Date(b.joined); }
+        return (A > B ? 1 : A < B ? -1 : 0) * state.sortDir;
+      });
+    }
+    const paginate = d => d.slice((state.page - 1) * state.perPage, (state.page - 1) * state.perPage + state.perPage);
+
+    function row(u) {
+      const rc = u.role === "Manager" ? "b-manager" : u.role === "User" ? "b-user" : "b-guest";
+      const sc = u.status === "Active" ? "s-active" : u.status === "InActive" ? "s-inactive" : u.status === "Pending" ? "s-pending" : "s-suspended";
+      return `<tr data-username="${u.username}">
+        <td><input type="checkbox"></td>
+        <td>
+          <div class="user">
+            <div class="avatar" style="background:${avatarColor(u.name)}">${initials(u.name)}</div>
+            <div><div class="name">${u.name}</div><div class="sub">${u.username}</div></div>
+          </div>
+        </td>
+        <td>${u.email}</td>
+        <td><span class="badge ${rc}">${u.role}</span></td>
+        <td><span class="badge ${sc}">${u.status}</span></td>
+        <td>${u.joined}</td>
+        <td>${u.lastActive}</td>
+        <td><button class="dots" aria-haspopup="menu" aria-expanded="false">⋯</button></td>
+      </tr>`;
+    }
+
+    function render() {
+      const filtered = sortData(filterData(users));
+      const pageItems = paginate(filtered);
+      $("#tbody").innerHTML = pageItems.map(row).join("");
+      const start = filtered.length ? (state.page - 1) * state.perPage + 1 : 0;
+      const end = Math.min(state.page * state.perPage, filtered.length);
+      $("#rangeText").textContent = `Showing ${start} to ${end} of ${filtered.length} users`;
+      $("#rangeText2").textContent = `Showing ${start} to ${end} of ${2543} entries`;
+      // KPIs
+      $("#k-total").textContent = users.length;
+      $("#k-active").textContent = users.filter(u => u.status === "Active").length;
+      $("#k-sus").textContent = users.filter(u => u.status === "Suspended").length;
+      $("#k-new").textContent = users.filter(u => new Date(u.joined) >= new Date("2025-03-01")).length;
+      renderPagination(Math.max(1, Math.ceil(filtered.length / state.perPage)));
+    }
+
+    function renderPagination(total) {
+      const wrap = $("#pagination"); wrap.innerHTML = "";
+      const mk = (label, go, active = false, disabled = false) => {
+        const b = document.createElement("button");
+        b.className = "page-btn" + (active ? " active" : "");
+        b.textContent = label; b.disabled = disabled;
+        if (!disabled) b.onclick = () => { state.page = go; render(); };
+        wrap.appendChild(b);
+      };
+      mk("Prev", Math.max(1, state.page - 1), false, state.page === 1);
+      const pages = [...Array(total)].map((_, i) => i + 1);
+      const list = total <= 7 ? pages : [1, (state.page > 3 ? "…" : 2), ...pages.filter(p => Math.abs(p - state.page) <= 1), (state.page < total - 2 ? "…" : total - 1), total];
+      let last = null;
+      list.forEach(p => {
+        if (p === "…") { const s = document.createElement("span"); s.className = "small"; s.textContent = "…"; wrap.appendChild(s); return; }
+        if (p === last) return; last = p; mk(String(p), p, p === state.page, false);
+      });
+      mk("Next", Math.min(total, state.page + 1), false, state.page === total);
+    }
+
+    // ========= Action menu logic =========
+    const menu = document.getElementById('amenu');
+    let anchorBtn = null;
+
+    function openMenu(btn) {
+      anchorBtn = btn;
+      const rect = btn.getBoundingClientRect();
+      const menuW = 200, gap = 8;
+      const roomBelow = window.innerHeight - rect.bottom;
+      const willFlip = roomBelow < 170;
+      const top = willFlip ? (rect.top - menu.offsetHeight - gap) : (rect.bottom + gap);
+      const left = Math.min(window.innerWidth - menuW - 8, rect.right - menuW);
+      menu.style.top = `${Math.max(8, top)}px`;
+      menu.style.left = `${Math.max(8, left)}px`;
+      menu.classList.add('show');
+      btn.setAttribute('aria-expanded', 'true');
+      menu.setAttribute('aria-hidden', 'false');
+    }
+    function closeMenu() {
+      if (!anchorBtn) return;
+      menu.classList.remove('show');
+      anchorBtn.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+      anchorBtn = null;
+    }
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.dots');
+      if (btn) {
+        if (anchorBtn === btn) { closeMenu(); return; }
+        openMenu(btn);
+        return;
+      }
+      const item = e.target.closest('#amenu .item');
+      if (item) {
+        const action = item.dataset.action;
+        const tr = anchorBtn ? anchorBtn.closest('tr') : null;
+        const username = tr ? tr.dataset.username : '';
+        if (action === 'view') alert(`View @${username}`);
+        if (action === 'edit') alert(`Edit @${username}`);
+        if (action === 'delete') confirm(`Delete @${username}?`);
+        closeMenu();
+        return;
+      }
+      if (!e.target.closest('#amenu')) closeMenu();
+    });
+    ['scroll', 'resize'].forEach(ev => window.addEventListener(ev, closeMenu, { passive: true }));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+    // ========= Filters wiring =========
+    $("#search").addEventListener("input", e => { state.q = e.target.value.trim().toLowerCase(); state.page = 1; render(); });
+    $("#roleFilter").addEventListener("change", e => { state.role = e.target.value; state.page = 1; render(); });
+    $("#statusFilter").addEventListener("change", e => { state.status = e.target.value; state.page = 1; render(); });
+    $("#perPage").addEventListener("change", e => { state.perPage = parseInt(e.target.value, 10); state.page = 1; render(); });
+    $("#resetBtn").addEventListener("click", () => {
+      state = { q: "", role: "", status: "", page: 1, perPage: parseInt($("#perPage").value, 10), sortKey: "", sortDir: 1 };
+      $("#search").value = ""; $("#roleFilter").value = ""; $("#statusFilter").value = "";
+      render();
+    });
+    document.querySelectorAll(".sort").forEach(s =>
+      s.addEventListener("click", () => {
+        const k = s.dataset.sort;
+        if (state.sortKey === k) { state.sortDir *= -1 }
+        else { state.sortKey = k; state.sortDir = 1 }
+        render();
+      })
+    );
+    document.getElementById("checkAll").addEventListener("change", e => {
+      document.querySelectorAll("#tbody input[type=checkbox]").forEach(c => c.checked = e.target.checked);
+    });
+
+    render();
+  </script>
+</body>
+</html>

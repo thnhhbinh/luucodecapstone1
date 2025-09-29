@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Market</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="test.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Overlay nền mờ -->
+  <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full bg-red-600 text-white shadow-md z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-2">
+      <!-- Danh mục -->
+      <div class="relative">
+        <div class="flex items-center space-x-4">
+          <button id="menuBtn"
+            class="w-8 h-8 flex items-center justify-center bg-white text-red-600 rounded-md shadow hover:bg-gray-200">
+            <img src="image/header/menu.png" alt="Menu" class="w-5 h-5" />
+          </button>
+          <a href="trangchu.html" class="text-xl font-extrabold transition">STUDENT MARKET</a>
+        </div>
+
+        <div id="menuDropdown"
+          class="hidden absolute left-0 mt-4 w-72 bg-white text-gray-700 rounded-md shadow-lg z-50">
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/document.png" alt="icon" class="w-5 h-5" />
+                <span>Sách & Tài liệu học tập</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <!-- Danh mục con -->
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 180px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Giáo trình</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Sách tham khảo</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Sách ngoại ngữ</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Truyện, tiểu thuyết</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/responsive.png" alt="icon" class="w-5 h-5" />
+                <span>Đồ điện tử & Công nghệ</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <!-- Danh mục con -->
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 190px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Điện thoại & Tablet</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Laptop & PC</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Phụ kiện & Linh kiện</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Thiết bị khác</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/stationery.png" alt="icon" class="w-5 h-5" />
+                <span>Đồ dùng học tập</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 160px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Vở & Sổ tay</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Bút & Thước</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Máy tính cầm tay</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Dụng cụ vẽ</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/sofa.png" alt="icon" class="w-5 h-5" />
+                <span>Đồ gia dụng</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 300px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Đồ bếp (nồi, chảo , bếp điện)</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Điện gia dụng (nồi cơm, ấm siêu tốc)</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Nội thất (bàn, ghế, kệ)</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Đèn học & Đèn ngủ</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Chén, ly, muỗng, đũa</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/laundry.png" alt="icon" class="w-5 h-5" />
+                <span>Thời trang & Phụ kiện</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 190px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Quần áo</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Giày dép</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Balo & Túi Xách</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Đồng hồ & Trang sức</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/sports.png" alt="icon" class="w-5 h-5" />
+                <span>Đồ thể thao & Giải trí</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 200px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Xe đạp & Ván trượt</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Gym & Yoga</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Bóng & Vợt</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Nhạc cụ</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Boardgame & Đồ chơi</a>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <a href="#" class="flex items-center justify-between px-4 py-2 hover:bg-gray-100 rounded-md">
+              <!-- Icon bên trái + text -->
+              <div class="flex items-center space-x-4">
+                <img src="image/header/other.png" alt="icon" class="w-5 h-5" />
+                <span>Khác</span>
+              </div>
+              <!-- Mũi tên bên phải -->
+              <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+            </a>
+            <div
+              class="absolute top-0 left-full ml-1 hidden group-hover:block bg-white text-gray-700 rounded-md shadow-lg"
+              style="width: 190px">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Đồ decor & Trang trí</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Thú cưng</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Vé sự kiện & Vé xe</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded-md">Sưu tầm</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="flex-1 px-4 flex justify-center">
+        <div class="relative w-full max-w-md">
+          <input type="text" placeholder="Tìm đồ dùng cũ..."
+            class="w-full px-4 py-2 pl-10 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-400" />
+          <button id="searchBtn" class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-red-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Icons + buttons -->
+      <div class="flex items-center space-x-3">
+        <!-- Yêu thích -->
+        <div class="relative">
+          <button id="favBtn" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-500">
+            <img src="image/header/like.png" alt="Yêu Thích" class="w-6 h-6" />
+          </button>
+
+          <div id="favDropdown"
+            class="hidden absolute right-0 mt-4 w-56 bg-white text-gray-700 rounded-md shadow-lg z-50">
+            <p class="px-4 py-2 font-semibold border-b">Yêu thích</p>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Laptop cũ giá rẻ</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Xe đạp thể thao</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Giáo trình đại học</a>
+          </div>
+        </div>
+
+        <!-- Thông báo -->
+        <div class="relative">
+          <button id="notiBtn" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-500">
+            <img src="image/header/notification.png" alt="Thông báo" class="w-6 h-6" />
+          </button>
+
+          <div id="notiDropdown"
+            class="hidden absolute right-0 mt-4 w-64 bg-white text-gray-700 rounded-md shadow-lg z-50">
+            <p class="px-4 py-2 font-semibold border-b">Thông báo</p>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Nguyễn An đã nhắn bạn về "Laptop
+              cũ"</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Sản phẩm "Xe đạp thể thao" đã có
+              người quan tâm</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:rounded-md">Bạn có 1 đánh giá mới</a>
+          </div>
+        </div>
+
+        <!-- Đăng bài -->
+        <button class="bg-white text-red-600 px-3 py-1 rounded-md hover:bg-gray-200">
+          Đăng bài
+        </button>
+
+        <!-- Avatar + dropdown -->
+        <div class="relative">
+          <button id="avatarBtn"
+            class="bg-red-500 p-2 rounded-full flex items-center space-x-1 hover:bg-red-400 relative overflow-visible">
+            <img src="image/header_user/avartar.jpg" alt="Avatar" class="w-7 h-7 rounded-full object-cover -m-1" />
+            <!-- Mũi tên dropdown avatar -->
+            <svg class="w-7 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 10 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Dropdown menu -->
+          <div id="dropdownMenu"
+            class="hidden absolute right-0 mt-3.5 w-72 bg-white rounded-xl shadow-lg z-50 overflow-hidden">
+
+            <!-- Header -->
+            <div class="p-4 border-b flex justify-center bg-gray-100">
+              <p class="text-sm text-black leading-snug text-center">
+                Xin chào, <span class="font-bold">Hoàng Thanh An</span>
+              </p>
+            </div>
+
+            <!-- Menu items -->
+            <div class="flex flex-col">
+              <a href="thongtintaikhoan.html" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/setting.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Thông tin tài khoản</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="quanlybaidang.html" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/edit.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Quản lý bài đăng</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="#" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/file.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Lịch sử giao dịch</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="#" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/gopy.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Góp ý & hỗ trợ</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="#" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/information.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-gray-700">Điều khoản sử dụng</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+              <a href="#" class="flex items-center justify-between px-4 py-3 hover:bg-gray-100">
+                <div class="flex items-center space-x-4">
+                  <img src="image/header_user/logout.png" alt="icon" class="w-5 h-5" />
+                  <span class="text-red-600">Đăng xuất</span>
+                </div>
+                <img src="image/header/next.png" alt="arrow" class="w-4 h-4" />
+              </a>
+            </div>
+
+            <!-- Footer: ngôn ngữ -->
+            <div class="border-t px-4 py-2 flex justify-center items-center text-xs font-medium bg-gray-200">
+              <a href="#" class="text-red-600">Tiếng Việt</a>
+              <span class="mx-1 text-gray-500">/</span>
+              <a href="#" class="text-gray-800 hover:text-black">English</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class=" pt-20 ">
+    <!-- Banner Slider -->
+    <div class="banner-container">
+      <div class="banner active">
+        <div class="text">
+          <h2>Tài liệu hot theo học kỳ</h2>
+          <p>Combo PDF chất lượng cao - Tải ngay.</p>
+        </div>
+        <div class="image">
+          <img
+            src="https://smot.bvhttdl.gov.vn/wp-content/uploads/2021/04/1427242000_507f63ecd93d6f77c16bb8b6e0b9fd63tai-lieu-moi.jpg"
+            alt="Slide 1" />
+        </div>
+      </div>
+
+      <div class="banner">
+        <div class="text">
+          <h2>Tài liệu ôn tập cuối kỳ</h2>
+          <p>Đầy đủ, dễ hiểu, tải miễn phí.</p>
+        </div>
+        <div class="image">
+          <img
+            src="https://tailieuonthi.io.vn/wp-content/uploads/2025/07/de-thi-cuoi-ki-ket-thuc-hoc-phan-Toan-cao-cap-1-cac-truong-co-dap-an-300x300.jpg"
+            alt="Slide 2" />
+        </div>
+      </div>
+
+      <div class="banner">
+        <div class="text">
+          <h2>Giáo trình chọn lọc</h2>
+          <p>Sách cũ giá rẻ - cập nhật thường xuyên.</p>
+        </div>
+        <div class="image">
+          <img src="https://static.oreka.vn/800-800_5c413b89-f31c-4afb-a668-e07b7b731f76" alt="Slide 3" />
+        </div>
+      </div>
+
+      <!-- Nút điều hướng -->
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+
+      <!-- Dots -->
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Gợi ý cho bạn -->
+  <section class="max-w-7xl mx-auto px-4 mt-10">
+    <div class="bg-white rounded-xl shadow p-4">
+      <!-- Header -->
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-bold">Gợi ý cho bạn</h2>
+      </div>
+
+      <!-- Button tất cả -->
+      <div class="mt-2">
+        <button onclick="filterProducts('all')"
+          class="px-3 py-1 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-500">
+          Tất cả
+        </button>
+      </div>
+
+      <!-- Tabs sort -->
+      <div class="flex items-center space-x-4 mt-4 text-sm font-medium text-gray-600">
+        <span class="text-gray-700">Sắp xếp theo:</span>
+        <button onclick="filterProducts('hot')" class="hover:text-red-600">Nổi bật</button>
+        <button onclick="filterProducts('newest')" class="hover:text-red-600">Mới nhất</button>
+        <button onclick="filterProducts('asc')" class="hover:text-red-600">Giá tăng dần</button>
+        <button onclick="filterProducts('desc')" class="hover:text-red-600">Giá giảm dần</button>
+      </div>
+
+      <!-- Grid sản phẩm -->
+      <div id="productGrid" class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
+
+        <!-- Item 1 -->
+        <div class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+          data-hot="true" data-date="2025-09-18" data-price="10000">
+          <div class="relative h-40 w-full">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+              class="rounded-md w-full h-full object-cover" />
+
+            <!-- Nút HOT -->
+            <span
+              class="absolute top-3 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">Hot</span>
+
+            <!-- Trái tim -->
+            <button onclick="toggleFavorite(this)"
+              class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+              <i class="fa-regular fa-heart text-red-600"></i>
+            </button>
+            <!-- Overlay ngày đăng + số ảnh -->
+            <div
+              class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+              <span>1 ngày trước</span>
+              <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+            </div>
+          </div>
+
+          <!-- Nội dung -->
+          <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+            <div>
+              <p class="font-semibold text-base">Nồi cơm Delites</p>
+              <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+              <p class="text-gray-500">Quận Thanh Khê, Đà Nẵng</p>
+            </div>
+            <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+          data-hot="false" data-date="2025-09-20" data-price="5000">
+          <div class="relative h-40 w-full">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+              class="rounded-md w-full h-full object-cover" />
+
+            <!-- Trái tim -->
+            <button onclick="toggleFavorite(this)"
+              class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+              <i class="fa-regular fa-heart text-red-600"></i>
+            </button>
+          </div>
+
+          <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+            <div>
+              <p class="font-semibold text-base">Nồi cơm Sharp</p>
+              <p class="text-gray-500">1.5 lít, bảo hành 24 tháng</p>
+              <p class="text-gray-500">Quận Hải Châu, Đà Nẵng</p>
+            </div>
+            <p class="text-red-600 font-medium mt-1 text-lg">5.000đ</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+          data-hot="false" data-date="2025-09-20" data-price="5000">
+          <div class="relative h-40 w-full">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+              class="rounded-md w-full h-full object-cover" />
+
+            <!-- Trái tim -->
+            <button onclick="toggleFavorite(this)"
+              class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+              <i class="fa-regular fa-heart text-red-600"></i>
+            </button>
+          </div>
+
+          <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+            <div>
+              <p class="font-semibold text-base">Nồi cơm Sharp</p>
+              <p class="text-gray-500">1.5 lít, bảo hành 24 tháng</p>
+              <p class="text-gray-500">Quận Hải Châu, Đà Nẵng</p>
+            </div>
+            <p class="text-red-600 font-medium mt-1 text-lg">5.000đ</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+          data-hot="false" data-date="2025-09-20" data-price="5000">
+          <div class="relative h-40 w-full">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+              class="rounded-md w-full h-full object-cover" />
+
+            <!-- Trái tim -->
+            <button onclick="toggleFavorite(this)"
+              class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+              <i class="fa-regular fa-heart text-red-600"></i>
+            </button>
+          </div>
+
+          <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+            <div>
+              <p class="font-semibold text-base">Nồi cơm Sharp</p>
+              <p class="text-gray-500">1.5 lít, bảo hành 24 tháng</p>
+              <p class="text-gray-500">Quận Hải Châu, Đà Nẵng</p>
+            </div>
+            <p class="text-red-600 font-medium mt-1 text-lg">5.000đ</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+          data-hot="false" data-date="2025-09-20" data-price="5000">
+          <div class="relative h-40 w-full">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+              class="rounded-md w-full h-full object-cover" />
+
+            <!-- Trái tim -->
+            <button onclick="toggleFavorite(this)"
+              class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+              <i class="fa-regular fa-heart text-red-600"></i>
+            </button>
+          </div>
+
+          <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+            <div>
+              <p class="font-semibold text-base">Nồi cơm Sharp</p>
+              <p class="text-gray-500">1.5 lít, bảo hành 24 tháng</p>
+              <p class="text-gray-500">Quận Hải Châu, Đà Nẵng</p>
+            </div>
+            <p class="text-red-600 font-medium mt-1 text-lg">5.000đ</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+          data-hot="false" data-date="2025-09-20" data-price="5000">
+          <div class="relative h-40 w-full">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+              class="rounded-md w-full h-full object-cover" />
+
+            <!-- Trái tim -->
+            <button onclick="toggleFavorite(this)"
+              class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+              <i class="fa-regular fa-heart text-red-600"></i>
+            </button>
+          </div>
+
+          <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+            <div>
+              <p class="font-semibold text-base">Nồi cơm Sharp</p>
+              <p class="text-gray-500">1.5 lít, bảo hành 24 tháng</p>
+              <p class="text-gray-500">Quận Hải Châu, Đà Nẵng</p>
+            </div>
+            <p class="text-red-600 font-medium mt-1 text-lg">5.000đ</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+          data-hot="false" data-date="2025-09-20" data-price="5000">
+          <div class="relative h-40 w-full">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+              class="rounded-md w-full h-full object-cover" />
+
+            <!-- Trái tim -->
+            <button onclick="toggleFavorite(this)"
+              class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+              <i class="fa-regular fa-heart text-red-600"></i>
+            </button>
+          </div>
+
+          <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+            <div>
+              <p class="font-semibold text-base">Nồi cơm Sharp</p>
+              <p class="text-gray-500">1.5 lít, bảo hành 24 tháng</p>
+              <p class="text-gray-500">Quận Hải Châu, Đà Nẵng</p>
+            </div>
+            <p class="text-red-600 font-medium mt-1 text-lg">5.000đ</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+          data-hot="false" data-date="2025-09-20" data-price="5000">
+          <div class="relative h-40 w-full">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+              class="rounded-md w-full h-full object-cover" />
+
+            <!-- Trái tim -->
+            <button onclick="toggleFavorite(this)"
+              class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+              <i class="fa-regular fa-heart text-red-600"></i>
+            </button>
+          </div>
+
+          <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+            <div>
+              <p class="font-semibold text-base">Nồi cơm Sharp</p>
+              <p class="text-gray-500">1.5 lít, bảo hành 24 tháng</p>
+              <p class="text-gray-500">Quận Hải Châu, Đà Nẵng</p>
+            </div>
+            <p class="text-red-600 font-medium mt-1 text-lg">5.000đ</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+          data-hot="false" data-date="2025-09-20" data-price="5000">
+          <div class="relative h-40 w-full">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+              class="rounded-md w-full h-full object-cover" />
+
+            <!-- Trái tim -->
+            <button onclick="toggleFavorite(this)"
+              class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+              <i class="fa-regular fa-heart text-red-600"></i>
+            </button>
+          </div>
+
+          <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+            <div>
+              <p class="font-semibold text-base">Nồi cơm Sharp</p>
+              <p class="text-gray-500">1.5 lít, bảo hành 24 tháng</p>
+              <p class="text-gray-500">Quận Hải Châu, Đà Nẵng</p>
+            </div>
+            <p class="text-red-600 font-medium mt-1 text-lg">5.000đ</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="product relative w-64 mx-auto bg-white border-2 rounded-lg shadow p-2 cursor-pointer flex flex-col"
+          data-hot="false" data-date="2025-09-20" data-price="5000">
+          <div class="relative h-40 w-full">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+              class="rounded-md w-full h-full object-cover" />
+
+            <!-- Trái tim -->
+            <button onclick="toggleFavorite(this)"
+              class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+              <i class="fa-regular fa-heart text-red-600"></i>
+            </button>
+          </div>
+
+          <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+            <div>
+              <p class="font-semibold text-base">Nồi cơm Sharp</p>
+              <p class="text-gray-500">1.5 lít, bảo hành 24 tháng</p>
+              <p class="text-gray-500">Quận Hải Châu, Đà Nẵng</p>
+            </div>
+            <p class="text-red-600 font-medium mt-1 text-lg">5.000đ</p>
+          </div>
+        </div>
+
+        <!-- Thêm nhiều sản phẩm khác tương tự -->
+      </div>
+
+      <!-- Nút xem thêm -->
+      <div class="mt-4 text-center">
+        <button id="loadMoreBtn" class="px-4 py-2 bg-red-600 text-white font-medium rounded-md hover:bg-red-500">
+          Xem thêm
+        </button>
+      </div>
+
+  </section>
+
+  <!-- Đã xem gần đây -->
+  <section class="max-w-7xl mx-auto px-4 mt-10 mb-10">
+    <div class="relative bg-white rounded-xl shadow p-4">
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-bold">Đã xem gần đây</h2>
+      </div>
+
+      <!-- Khung sản phẩm -->
+      <div class="overflow-hidden px-3 py-6"> <!-- thêm px-4 để có lề trái phải -->
+        <div id="recentWrapper" class="flex space-x-14 transition-transform duration-500 ease-in-out">
+
+          <!-- Card sp 1 -->
+          <div
+            class="w-64 flex-shrink-0 bg-white border-2 rounded-lg shadow hover:shadow-lg transition transform hover:scale-105 p-2 cursor-pointer flex flex-col">
+            <!-- Ảnh sản phẩm + Hot + Trái tim -->
+            <div class="relative h-40 w-full">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                alt="Nồi cơm" class="rounded-md w-full h-full object-cover" />
+
+              <!-- Nút HOT (bên trái) -->
+              <span class="absolute top-2 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                Hot
+              </span>
+              <!-- Trái tim (bên phải) -->
+              <button onclick="toggleFavorite(this, 'Nồi cơm Delites')"
+                class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                <i class="fa-regular fa-heart text-red-600"></i>
+              </button>
+
+              <!-- Overlay ngày đăng + số ảnh -->
+              <div
+                class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-2 py-1 flex justify-between items-center rounded-b-md">
+                <span>1 ngày trước</span>
+                <span>+3 <img src="image/image.png" alt="icon" class="w-3 h-3 inline-block"></span>
+              </div>
+            </div>
+            <!-- Nội dung -->
+            <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+              <div>
+                <p class="font-semibold text-base">Nồi cơm Delites</p>
+                <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+              </div>
+              <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+            </div>
+          </div>
+
+
+          <!-- Card sp 2 -->
+          <div
+            class="w-64 flex-shrink-0 bg-white border-2 rounded-lg shadow hover:shadow-lg transition transform hover:scale-105 p-2 cursor-pointer flex flex-col">
+            <!-- Ảnh sản phẩm + Hot + Trái tim -->
+            <div class="relative h-40 w-full">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                alt="Nồi cơm" class="rounded-md w-full h-full object-cover" />
+
+              <!-- Nút HOT (bên trái) -->
+              <span class="absolute top-2 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                Hot
+              </span>
+              <!-- Trái tim (bên phải) -->
+              <button onclick="toggleFavorite(this, 'Nồi cơm Delites')"
+                class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                <i class="fa-regular fa-heart text-red-600"></i>
+              </button>
+            </div>
+            <!-- Nội dung -->
+            <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+              <div>
+                <p class="font-semibold text-base">Nồi cơm Delites</p>
+                <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+              </div>
+              <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+            </div>
+          </div>
+
+          <!-- Card sp 3 -->
+          <div
+            class="w-64 flex-shrink-0 bg-white border-2 rounded-lg shadow hover:shadow-lg transition transform hover:scale-105 p-2 cursor-pointer flex flex-col">
+            <!-- Ảnh sản phẩm + Hot + Trái tim -->
+            <div class="relative h-40 w-full">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                alt="Nồi cơm" class="rounded-md w-full h-full object-cover" />
+
+              <!-- Nút HOT (bên trái) -->
+              <span class="absolute top-2 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                Hot
+              </span>
+              <!-- Trái tim (bên phải) -->
+              <button onclick="toggleFavorite(this, 'Nồi cơm Delites')"
+                class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                <i class="fa-regular fa-heart text-red-600"></i>
+              </button>
+            </div>
+            <!-- Nội dung -->
+            <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+              <div>
+                <p class="font-semibold text-base">Nồi cơm Delites</p>
+                <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+              </div>
+              <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+            </div>
+          </div>
+
+          <!-- Card sp 4 -->
+          <div
+            class="w-64 flex-shrink-0 bg-white border-2 rounded-lg shadow hover:shadow-lg transition transform hover:scale-105 p-2 cursor-pointer flex flex-col">
+            <!-- Ảnh sản phẩm + Hot + Trái tim -->
+            <div class="relative h-40 w-full">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                alt="Nồi cơm" class="rounded-md w-full h-full object-cover" />
+
+              <!-- Nút HOT (bên trái) -->
+              <span class="absolute top-2 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                Hot
+              </span>
+              <!-- Trái tim (bên phải) -->
+              <button onclick="toggleFavorite(this, 'Nồi cơm Delites')"
+                class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                <i class="fa-regular fa-heart text-red-600"></i>
+              </button>
+            </div>
+            <!-- Nội dung -->
+            <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+              <div>
+                <p class="font-semibold text-base">Nồi cơm Delites</p>
+                <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+              </div>
+              <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+            </div>
+          </div>
+
+          <!-- Card sp 5 -->
+          <div
+            class="w-64 flex-shrink-0 bg-white border-2 rounded-lg shadow hover:shadow-lg transition transform hover:scale-105 p-2 cursor-pointer flex flex-col">
+            <!-- Ảnh sản phẩm + Hot + Trái tim -->
+            <div class="relative h-40 w-full">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEjyltjwRdW4jYfVehr5-pqgQDGDqeGlYQ2Q&s"
+                alt="Nồi cơm" class="rounded-md w-full h-full object-cover" />
+
+              <!-- Nút HOT (bên trái) -->
+              <span class="absolute top-2 left-2 bg-black/80 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                Hot
+              </span>
+              <!-- Trái tim (bên phải) -->
+              <button onclick="toggleFavorite(this, 'Nồi cơm Delites')"
+                class="absolute top-2 right-2 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-full hover:scale-110 transition">
+                <i class="fa-regular fa-heart text-red-600"></i>
+              </button>
+            </div>
+            <!-- Nội dung -->
+            <div class="mt-2 text-sm flex flex-col flex-grow justify-between">
+              <div>
+                <p class="font-semibold text-base">Nồi cơm Delites</p>
+                <p class="text-gray-500">1.8 lít, bảo hành 12 tháng</p>
+              </div>
+              <p class="text-red-600 font-medium mt-1 text-lg">10.000đ</p>
+            </div>
+          </div>
+          <!-- Thêm card -->
+
+        </div>
+      </div>
+
+      <!-- Nút mũi tên -->
+      <div class="flex justify-end space-x-2 mt-1 pr-4"> <!-- thêm pr-4 cho cân lề phải -->
+        <button onclick="scrollRecent(-1)" class="bg-white shadow-md p-2 rounded-full hover:bg-gray-100">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button onclick="scrollRecent(1)" class="bg-white shadow-md p-2 rounded-full hover:bg-gray-100">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+  </section>
+  <!-- Footer -->
+  <footer class="bg-red-600 text-white mt-10">
+    <div class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Cột 1: Logo + giới thiệu -->
+      <div>
+        <h2 class="text-xl font-bold mb-2">Student Market</h2>
+        <p class="text-sm">Cung cấp sản phẩm chất lượng, giá tốt và dịch vụ uy tín.</p>
+      </div>
+
+      <!-- Cột 2: Liên kết nhanh -->
+      <div>
+        <h3 class="font-semibold mb-2">Liên kết</h3>
+        <ul class="space-y-1 text-sm">
+          <li><a href="#" class="hover:underline">Trang chủ</a></li>
+          <li><a href="#" class="hover:underline">Sản phẩm</a></li>
+          <li><a href="#" class="hover:underline">Yêu thích</a></li>
+          <li><a href="#" class="hover:underline">Liên hệ</a></li>
+        </ul>
+      </div>
+
+      <!-- Cột 3: Mạng xã hội -->
+      <div>
+        <h3 class="font-semibold mb-2">Kết nối</h3>
+        <div class="flex space-x-3">
+          <a href="#"><i class="fa-brands fa-facebook text-xl hover:text-gray-200"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram text-xl hover:text-gray-200"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok text-xl hover:text-gray-200"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube text-xl hover:text-gray-200"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bản quyền -->
+    <div class="text-center text-xs bg-red-700 py-3">
+      © 2025 Student Market. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="test.js"></script>
+</body>
+
+</html>

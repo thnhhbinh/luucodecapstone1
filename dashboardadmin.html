@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E-commerce Dashboard — Cân đối gọn gàng</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root{
+      --bg:#f6f8fc; --surface:#fff; --line:#e7ecf3; --text:#1f2433; --muted:#667085;
+      --good:#12b886; --bad:#ef4444;
+      --sidebar:#0b1021; --radius:12px; --shadow:0 2px 12px rgba(16,24,40,.05);
+      --wrap:1180px; --gap:20px; --sidebar-w:240px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,Arial; background:var(--bg); color:var(--text)}
+    .app{display:flex; min-height:100vh}
+
+    /* Sidebar */
+    aside{position:fixed; inset:0 auto 0 0; width:var(--sidebar-w); background:var(--sidebar); color:#cdd6e1; display:flex; flex-direction:column; padding:16px 12px}
+    .logo{display:flex; align-items:center; gap:8px; padding:8px 10px; color:#fff; font-weight:700}
+    .logo .dot{width:8px;height:8px;border-radius:50%;background:#22d3ee; box-shadow:0 0 0 4px rgba(34,211,238,.15)}
+    .nav-sec{margin:12px 10px 6px; font-size:11px; letter-spacing:.6px; color:#7e8694}
+    .nav-item{display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:8px; color:#d1d7e5; text-decoration:none; font-size:14px}
+    .nav-item:hover{background:rgba(255,255,255,.06)}
+    .nav-item.active{background:rgba(108,92,231,.25); color:#fff}
+
+    /* Main + Topbar */
+    main{margin-left:var(--sidebar-w); width:calc(100% - var(--sidebar-w))}
+    .topbar{position:sticky; top:0; z-index:40; background:var(--surface); border-bottom:1px solid var(--line); padding:10px 16px; display:flex; align-items:center; gap:12px}
+    .title{font-weight:600; font-size:15px}
+    .circle{width:32px;height:32px;border-radius:50%;background:#eef2f7;display:grid;place-items:center;font-size:14px;color:#475569}
+    .search{flex:1; display:flex; align-items:center; gap:6px; background:#f3f5f9; border:1px solid var(--line); border-radius:999px; padding:6px 12px}
+    .search input{flex:1; border:0; background:transparent; outline:none; font:inherit; font-size:13px}
+
+    /* Content */
+    .wrap{max-width:var(--wrap); margin:18px auto; padding:0 18px}
+    .grid{display:grid; gap:var(--gap)}
+    .cols-4{grid-template-columns:repeat(4, 1fr)}
+    .grid-12{display:grid; grid-template-columns:repeat(12, 1fr); gap:var(--gap); align-items:stretch}
+    .span-8{grid-column:span 8}
+    .span-4{grid-column:span 4}
+
+    .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); display:flex; flex-direction:column}
+    .card .hd{padding:10px 14px; border-bottom:1px solid var(--line); font-weight:600; font-size:13px}
+    .card .bd{padding:12px; flex:1}
+
+    /* KPI */
+    .kpi{min-height:90px}
+    .stat{display:flex; align-items:center; justify-content:space-between; height:100%}
+    .stat .label{font-size:12px; color:var(--muted)}
+    .stat .val{font-size:18px; font-weight:700}
+    .delta{font-size:11px; font-weight:600}
+    .delta.up{color:var(--good)} .delta.down{color:var(--bad)}
+
+    /* Orders Table */
+    table{width:100%; border-collapse:collapse}
+    th,td{padding:8px; border-bottom:1px solid var(--line); font-size:13px; text-align:left; vertical-align:middle}
+    th{font-size:11px; text-transform:uppercase; letter-spacing:.4px; color:#6b7280; background:#fafcff}
+    tr:hover td{background:#fafcff}
+    th:first-child,td:first-child{text-align:center; width:36px}
+    .btn{padding:4px 8px;font-size:12px;border-radius:6px;border:1px solid var(--line);background:#f8fafc;cursor:pointer}
+    .badge{padding:3px 6px;border-radius:999px;font-size:11px; display:inline-block; border:1px solid}
+    .b-ok{background:#ecfdf5;color:#047857;border-color:#a7f3d0}
+    .b-info{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
+    .b-bad{background:#fff1f2;color:#be123c;border-color:#fecdd3}
+
+    /* Product cell */
+    .prod{display:flex; align-items:center; gap:8px}
+    .thumb{width:32px; height:32px; border-radius:6px; object-fit:cover; border:1px solid var(--line)}
+
+    /* Responsive */
+    @media (max-width:1100px){ .cols-4{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:800px){
+      aside{position:fixed; transform:translateX(-100%); transition:transform .25s ease}
+      aside.open{transform:none}
+      main{margin-left:0; width:100%}
+      .title{display:none}
+      .cols-4{grid-template-columns:1fr}
+      .grid-12{grid-template-columns:1fr}
+      .span-8,.span-4{grid-column:1/-1}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="logo"><span class="dot"></span> Concept</div>
+      <div class="nav-sec">MENU</div>
+      <a class="nav-item active" href="#"><span>📊</span><span>Dashboard</span></a>
+      <a class="nav-item" href="#"><span>🛒</span><span>Ecommerce</span></a>
+      <a class="nav-item" href="#"><span>📦</span><span>Products</span></a>
+      <a class="nav-item" href="#"><span>👥</span><span>Customers</span></a>
+      <div class="nav-sec">SYSTEM</div>
+      <a class="nav-item" href="#"><span>🧑‍💻</span><span>Users</span></a>
+      <a class="nav-item" href="#"><span>🗓️</span><span>Timeline</span></a>
+      <a class="nav-item" href="#"><span>⚙️</span><span>Settings</span></a>
+    </aside>
+
+    <!-- Main -->
+    <main>
+      <div class="topbar">
+        <button id="toggle" class="circle" title="Menu">☰</button>
+        <div class="title">E-commerce Dashboard</div>
+        <div class="search"><span>🔎</span><input placeholder="Search anything…" /></div>
+        <div class="circle">🔔</div>
+        <div class="circle">👤</div>
+      </div>
+
+      <div class="wrap">
+        <!-- KPI 4 ô -->
+        <div class="grid cols-4">
+          <div class="card kpi"><div class="bd stat"><div><div class="label">Sales</div><div class="val">$12,099</div></div><div class="delta up">▲ 5.9%</div></div></div>
+          <div class="card kpi"><div class="bd stat"><div><div class="label">New Customer</div><div class="val">1,245</div></div><div class="delta up">▲ 10%</div></div></div>
+          <div class="card kpi"><div class="bd stat"><div><div class="label">Visitor</div><div class="val">13,000</div></div><div class="delta up">▲ 9.5%</div></div></div>
+          <div class="card kpi"><div class="bd stat"><div><div class="label">Total Orders</div><div class="val">1,340</div></div><div class="delta down">▼ 4%</div></div></div>
+        </div>
+
+        <!-- Orders + Donut Chart -->
+        <section class="grid-12">
+          <div class="card span-8">
+            <div class="hd">Recent Orders</div>
+            <div class="bd" style="overflow:auto; max-height:400px">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Product</th>
+                    <th>ID</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Order Time</th>
+                    <th>Customer</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="order-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card span-4">
+            <div class="hd">Revenue by Category</div>
+            <div class="bd" style="display:flex;align-items:center;justify-content:center;min-height:400px">
+              <canvas id="revByCat" height="260"></canvas>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Toggle sidebar
+    const toggle=document.getElementById('toggle');
+    const sidebar=document.getElementById('sidebar');
+    toggle.addEventListener('click',()=>sidebar.classList.toggle('open'));
+
+    // Orders data
+    const orders=[
+      {id:1,name:'Product #1',thumb:'https://picsum.photos/seed/p1/100',pid:'uX00001',qty:20,price:'$80.00', time:'27-08-2018 14:47:27',customer:'Patricia J. King',status:'In Transit'},
+      {id:2,name:'Product #2',thumb:'https://picsum.photos/seed/p2/100',pid:'uX00002',qty:12,price:'$320.00',time:'26-08-2018 10:21:10',customer:'Rachel J. Wicker', status:'Delivered'},
+      {id:3,name:'Product #3',thumb:'https://picsum.photos/seed/p3/100',pid:'uX00003',qty:23,price:'$560.00',time:'26-08-2018 09:17:02',customer:'Michael E. Ledford',status:'Delivered'},
+      {id:4,name:'Product #4',thumb:'https://picsum.photos/seed/p4/100',pid:'uX00004',qty:34,price:'$240.00',time:'25-08-2018 09:05:15',customer:'Michael E. Ledford',status:'Delivered'},
+    ];
+    const tbody=document.getElementById('order-body');
+    const badge=(s)=>{const t=s.toLowerCase();return `<span class="badge ${t.includes('deliver')?'b-ok':t.includes('transit')?'b-info':'b-bad'}">${s}</span>`};
+
+    orders.forEach(o=>{
+      tbody.insertAdjacentHTML('beforeend',`
+        <tr>
+          <td>${o.id}</td>
+          <td>
+            <div class="prod">
+              <img class="thumb" src="${o.thumb}" alt="${o.name}" />
+              <span>${o.name}</span>
+            </div>
+          </td>
+          <td>${o.pid}</td>
+          <td>${o.qty}</td>
+          <td>${o.price}</td>
+          <td>${o.time}</td>
+          <td>${o.customer}</td>
+          <td>${badge(o.status)}</td>
+          <td style="text-align:right"><button class="btn">View</button></td>
+        </tr>`);
+    });
+
+    // Donut chart
+    new Chart(document.getElementById('revByCat'),{
+      type:'doughnut',
+      data:{labels:['Electronics','Fashion','Home & Garden','Toys','Books'],datasets:[{data:[34,22,18,14,12],borderWidth:0}]},
+      options:{responsive:true,cutout:'62%',plugins:{legend:{position:'bottom',labels:{boxWidth:12}},tooltip:{enabled:true}}}
+    });
+  </script>
+</body>
+</html>
